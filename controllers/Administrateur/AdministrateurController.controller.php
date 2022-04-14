@@ -92,18 +92,6 @@ class AdministrateurController extends MainController
         $this->genererPage($data_page);
     }
 
-    public function afficherLivres()
-    {
-        $livres = $this->administrateurManager->getLivres();
-        $data_page = [
-            "page_description" => "La liste des livres",
-            "page_title" => "La liste des livres",
-            "livres"=>$livres,
-            "view" => "views/Administrateur/livres.view.php",
-            "template" => "views/common.dashboard/templateDash.php"
-        ];
-        $this->genererPageDashboard($data_page);
-    }
 
     public function afficherUnLivre($id)
     {

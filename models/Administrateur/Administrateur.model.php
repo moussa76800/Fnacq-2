@@ -1,11 +1,9 @@
 <?php 
 require_once("./models/MainManager.model.php");
-require_once "./models/Livre/Livre.class.php";
+require_once "./models/Livre/LivreManager.model.php";
 
 class AdministrateurManager extends MainManager{
   
-    private $livres;
-
     public function getUtilisateurs(){
         $req = $this->getBdd()->prepare("SELECT * FROM utilisateur");
         $req->execute();
@@ -59,12 +57,6 @@ public function getUtilisateurByLogin($login){
         $req->closeCursor();
         return $datas;
 }
-
-
-public function getLivres()
-    {
-        return $this->livres;
-    }
 
     public function chargementLivres()
     {

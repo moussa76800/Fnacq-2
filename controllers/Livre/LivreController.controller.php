@@ -6,28 +6,34 @@ require_once "./models/Livre/LivreManager.model.php";
 
 class LivreController extends MainController
 {
-
     private $livreManager;
     
-
-
     public function __construct()
     {
         $this->livreManager = new LivreManager();
         $this->livreManager ->chargementLivres();
     }
 
-
     public function afficherLivres()
     {
         $livres = $this->livreManager->getLivres();
-        $data_page = [
-            "page_description" => "La liste des livres",
-            "page_title" => "La liste des livres",
-            "livres"=>$livres,
-            "view" => "views/Livre/livre.view.php",
-            "template" => "views/common/template.php"
-        ];
+        if (Securite::estUtilisateur() || !Securite::estConnecte()) {
+            $data_page = [
+                "page_description" => "La liste des livres",
+                "page_title" => "La liste des livres",
+                "livres"=>$livres,
+                "view" => "views/Livre/livre.view.php",
+                "template" => "views/common/template.php"
+            ];
+        } else {
+            $data_page = [
+                "page_description" => "La liste des livres",
+                "page_title" => "La liste des livres",
+                "livres"=>$livres,
+                "view" => "views/Livre/livre.view.php",
+                "template" => "views/common.dashboard/templateDash.php"
+            ];
+        }
         $this->genererPage($data_page);
     }
 
@@ -46,7 +52,7 @@ class LivreController extends MainController
             "page_title" => "Affichage du livre",
             "livre"=>$livre,
             "view" => "views/Livre/afficherUnLivre.view.php",
-            "template" => "views/common.dashboard/templateDash.php"
+            "template" => "views/common/template.php"
         ];
         $this->genererPage($data_page);
     }

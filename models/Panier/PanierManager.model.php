@@ -23,7 +23,11 @@ class PanierManager extends  MainManager
 
     public function panier_data()
     {
-        $result = json_decode($_COOKIE['panier'], true);
+        if (isset($_COOKIE['panier'])) {
+            $result = json_decode($_COOKIE['panier'], true);
+        } else {
+            $result = null;
+        }
         return $result;
     }
 

@@ -13,17 +13,29 @@ class Securite
 
     public static function estConnecte()
     {
-        return (!empty($_SESSION['profil']));
+        if (isset($_SESSION['profil'])) {
+            return (!empty($_SESSION['profil']));
+        } else {
+            return null;
+        }
     }
 
     public static function estUtilisateur()
     {
-        return (!empty($_SESSION['profil']['role']==="utilisateur"));
+        if (isset($_SESSION['profil'])) {
+            return (!empty($_SESSION['profil']['role']==="utilisateur"));
+        } else {
+            return null;
+        }
     }
 
     public static function estAdministrateur()
     {
-        return (!empty($_SESSION['profil']['role']==="administrateur"));
+        if (isset($_SESSION['profil'])) {
+            return (!empty($_SESSION['profil']['role']==="administrateur"));
+        } else {
+            return null;
+        }
     }
 
     public static function utilisateurIndesirable()

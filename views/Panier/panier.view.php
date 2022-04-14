@@ -60,34 +60,30 @@ $livreManager=new LivreManager();
 							<th>TOTAL PRICE</th>
 							<th>Action</th>
 						</tr>
-
-						<?php 
 						
-						$total = 0;
-						foreach ($result as $key => $value) { ?>
+						<?php $total = 0;
+						if (isset($result)) {	
+							foreach ($result as $key => $value) { ?>
+								<tr>
+									<td class="align-middle"><img src="public/Assets/images/livres/<?= $value['Valeur_Image']; ?>" width="60px;"></td>
+									<td class="align-middle"><?= $value['Valeur_Title']; ?></a></td>
+									<td class="align-middle"><?= $value['Valeur_Price']; ?> Euros</td>
+									<td class="align-middle"><?= $value['Valeur_Quantity']; ?> quantity</td>
+									<td class="align-middle"><?= intval($value['Valeur_Quantity']) * intval($value['Valeur_Price']); ?> Euros</td>
+									<td class="align-middle"><a class="btn btn-danger" href="<?= URL ?>panier/del/<?= $value['Valeur_Id']; ?>"><img src="public/Assets/images/icons/trash.svg"></a></td>
+								</tr>
+							<?php } ?>
+							<?php
+							$total = $total + ($value['Valeur_Quantity']*$value['Valeur_Price']);
+							} ?>
 							<tr>
-								<?php if($value['Valeur_Image']===Livre::class): ?>
-								<td class="align-middle"><img src="public/Assets/images/livres/<?= $value['Valeur_Image']; ?>" width="60px;"></td>
-								<?php else : ?>
-									<td class="align-middle"><img src="public/Assets/images/materielsHifi/<?= $value['Valeur_Image']; ?>" width="60px;"></td>
-								<?php endif; ?>
-								<td class="align-middle"><?= $value['Valeur_Title']; ?></a></td>
-								<td class="align-middle"><?= $value['Valeur_Price']; ?> Euros</td>
-								<td class="align-middle"><?= $value['Valeur_Quantity']; ?> quantity</td>
-								<td class="align-middle"><?= intval($value['Valeur_Quantity']) * intval($value['Valeur_Price']); ?> Euros</td>
-								<td class="align-middle"><a class="btn btn-danger" href="<?= URL ?>panier/del/<?= $value['Valeur_Id']; ?>"><img src="public/Assets/images/icons/trash.svg"></a></td>
+								<td colspan="4" class="text-right"><strong>Total</strong></td>
+	
+	
+								<td><?php echo $total." euros" ?></td>
 							</tr>
-						<?php
-						$total = $total + ($value['Valeur_Quantity']*$value['Valeur_Price']);
-						} ?>
-						<tr>
-							<td colspan="4" class="text-right"><strong>Total</strong></td>
-							
-                     
-							<td><?php echo $total." euros" ?></td>
-						</tr>
-					
-					</table>
+	
+						</table>
 
 				</div><br>
 				<a href="" class="btn btn-success pull-right ">Finaliser achat</a>

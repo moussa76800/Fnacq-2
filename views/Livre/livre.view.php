@@ -10,13 +10,8 @@
         <th>PRICE</th>
         <th colspan="3">ACTIONS</th>
     </tr>
-
-    
-     
     <?php
          
-         
-        
          for ($i=0; $i< count($livres); $i++) : ?>
        
         <tr>
@@ -25,10 +20,22 @@
             <td class="align-middle"><?=$livres[$i]->getAuthors();?></td>
             <td class="align-middle"><?=$livres[$i]->getNumbersOfPages();?></td>
             <td class="align-middle"><?=$livres[$i]->getPrice();?> Euros</td>
-           
+            <?php
+            if (Securite::estUtilisateur() || !Securite::estConnecte()) { ?>
                 <form> 
-             <td class="align-middle"><a href="<?= URL ?>livres/buy/<?= $livres[$i]->getId(); ?>" class="btn btn-info">Buy</a></td>
-        </td></form>
+                    <td class="align-middle"><a href="<?= URL ?>livres/buy/<?= $livres[$i]->getId(); ?>" class="btn btn-info">Buy</a></td>
+                </form>
+            <?php    } else { ?>
+                <!-- TO DO  URL edit -->
+                <td class="align-middle"><a href="<?= URL ?>" class="btn btn-warning">Edit</a></td>
+                <td class="align-middle">
+            <!-- TO DO  URL delete -->
+                <form method="POST" action="<?= URL ?>" onSubmit="return confirm('Voulez-vous vraiment supprimer le livre ?');">
+                    <button class = "btn btn-danger" type="submit">Delete</button>
+                </form></td>
+            <?php   } ?>
+            
+
            
         </tr>
         <?php endfor; ?>

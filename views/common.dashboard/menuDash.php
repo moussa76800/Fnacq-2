@@ -41,7 +41,7 @@
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><a class="dropdown-item" href="<?= URL ?>tchat">Mini-tchat</a></li>
-            <li><a class="dropdown-item" href="<?= URL ?>administration/blog">Gestion du Blog</a></a></li>
+            <li><a class="dropdown-item" href="<?= URL ?>blog">Gestion du Blog</a></a></li>
           </ul>
         </li>
         

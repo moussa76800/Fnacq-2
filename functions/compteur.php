@@ -1,7 +1,6 @@
 <?php
 
-function ajouter_vue(): void
-{
+function ajouter_vue(){
     $fichier = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'functions' . DIRECTORY_SEPARATOR . 'compteur';
     $fichier_journalier=$fichier.'-'. date('y-m-d');
     incrementer_compteur($fichier);
@@ -9,7 +8,7 @@ function ajouter_vue(): void
     
 }
 
-function incrementer_compteur(string $fichier):void {
+function incrementer_compteur($fichier){
     $compteur = 1;
 
     if (file_exists($fichier)) {

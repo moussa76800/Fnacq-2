@@ -205,18 +205,7 @@ class AdministrateurController extends MainController
         
         header('Location: '. URL .  "administration/livres");
     }
-    public function afficherBlogDash()
-    {
-        $posts = $this->blogManager->getPosts();
-        $data_page = [
-            "page_description" => "Page du Blog",
-            "page_title" => "Page du Blog",
-            "posts" => $posts,
-            "view" => "views/Administrateur/blogDash.view.php",
-            "template" => "views/common.dashboard/templateDash.php"
-        ];
-        $this->genererPageDashboard($data_page);
-    }
+   
 
 
     public function pageErreur($msg)

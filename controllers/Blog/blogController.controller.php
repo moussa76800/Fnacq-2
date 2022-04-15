@@ -24,14 +24,31 @@ class BlogController extends MainController
     public function afficherBlog()
     {
         $posts = $this->blogManager->getPosts();
-        $data_page = [
-            "page_description" => "Page du Blog",
-            "page_title" => "Page du Blog",
-            "posts" => $posts,
-            "view" => "views/Blog/blog.view.php",
-            "template" => "views/common/template.php"
-        ];
+        if (Securite::estUtilisateur() || !Securite::estConnecte()) {
+            $data_page = [
+                "page_description" => "Page du Blog",
+                "page_title" => "Page du Blog",
+                "posts" => $posts,
+                "view" => "views/Blog/blog.view.php",
+                "template" => "views/common/template.php"
+            ];
+        } else {
+            $data_page = [
+                "page_description" => "Page du Blog",
+                "page_title" => "Page du Blog",
+                "posts" => $posts,
+                "view" => "views/Blog/blog.view.php",
+                "template" => "views/common.dashboard/templateDash.php"
+            ];
+        }
+        
+        
+        
         $this->genererPage($data_page);
+
+
+
+
     }
 
     public function findTitle($title)
@@ -78,7 +95,6 @@ class BlogController extends MainController
 
      public function ajoutPostValidation()
     {
-
         $file = $_FILES['image'];
         $repertoire = "public/Assets/images/blog/";
         $nomImageAjoute = $this->ajoutImage($file, $repertoire);

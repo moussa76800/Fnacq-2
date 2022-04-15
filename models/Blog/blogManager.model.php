@@ -46,11 +46,11 @@ class BlogManager extends MainManager
 
 
 
-    public function ajoutPostBd($title, $author, $content, $image, $created_at)
+    public function ajoutPostBd($title, $author, $content, $created_at, $image)
     {
 
         $req = "INSERT INTO posts (title,author,content,image,created_at)
-    values (:title,:author,:content,:image,now() )";
+                    values (:title,:author,:content,:image,:created_at )";
         $stmt = $this->getBdd()->prepare($req);
 
 
@@ -58,13 +58,14 @@ class BlogManager extends MainManager
         $stmt->bindValue(":author", $author, PDO::PARAM_STR);
         $stmt->bindValue(":content", $content, PDO::PARAM_STR);
         $stmt->bindValue(":image", $image, PDO::PARAM_STR);
+        $stmt->bindValue(":created_at", $created_at, PDO::PARAM_STR);
 
 
         $resultat = $stmt->execute();
         $stmt->closeCursor();
 
         if ($resultat > 0) {
-            $post = new Blog($this->getBdd()->lastInsertId(), $title, $author, $content,$image, localtime() );
+            $post = new Blog($this->getBdd()->lastInsertId(), $title, $author, $content,$image, $created_at );
             $this->ajoutPost($post);
         }
     }

@@ -302,10 +302,6 @@ try {
                         $administrateurController->showConnexionUser($url[2]);
                         header("Location: " . URL . "showConnexionUser.view.php");
                         break;
-                    case "livres":
-                        $administrateurController->afficherLivres();
-                        
-                        break;
                     case "modify":
                         $administrateurController->modificationLivre($url[2]);
                         break;
@@ -313,16 +309,13 @@ try {
                         $administrateurController->modifLivreValidation();
                         break;
                     case "add":
-                        $administrateurController->ajoutLivre()();
+                        $administrateurController->ajoutLivre();
                         break;
                     case "validationAjout":
                         $administrateurController->ajoutLivreValidation();
                         break;
                     case "delete":
                         $administrateurController->suppressionLivre($url[2]);
-                        break;
-                    case "blog":
-                        $administrateurController->afficherBlogDash($url[1]);
                         break;
                    /*  case "modify":
                         $blogController->modificationPost($url[2]);

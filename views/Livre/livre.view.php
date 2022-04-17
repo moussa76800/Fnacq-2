@@ -27,10 +27,10 @@
                 </form>
             <?php    } else { ?>
                 <!-- TO DO  URL edit -->
-                <td class="align-middle"><a href="<?= URL ?>" class="btn btn-warning">Edit</a></td>
+                <td class="align-middle"><a href="<?= URL ?>livres/modify/<?= $livres[$i]->getId(); ?>" class="btn btn-warning">Edit</a></td>
                 <td class="align-middle">
             <!-- TO DO  URL delete -->
-                <form method="POST" action="<?= URL ?>" onSubmit="return confirm('Voulez-vous vraiment supprimer le livre ?');">
+                <form method="POST" action="<?= URL ?>livres/delete/<?= $livres[$i]->getId(); ?>" onSubmit="return confirm('Voulez-vous vraiment supprimer le livre ?');">
                     <button class = "btn btn-danger" type="submit">Delete</button>
                 </form></td>
             <?php   } ?>

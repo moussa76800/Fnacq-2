@@ -4,11 +4,11 @@
     <form method="POST" action="<?= URL ?>blog">
         <div class="input-group">
             <input type="search" class="form-control rounded text-center" name="findPost" height="50px" placeholder="Search the title of post" aria-label="Search" aria-describedby="search-addon" />
-            <button name="submit" class="btn btn-primary"  style="font-weight: bold">Search</button>
-            
+            <button name="submit" class="btn btn-primary" style="font-weight: bold">Search</button>
+
         </div>
     </form>
-        <br>
+    <br>
     <TITLE>The blog</TITLE>
     <table class="table text-center">
         <tr class="table-dark">
@@ -26,16 +26,18 @@
                 <td class="align-middle"><?= $posts[$i]->getAuthor(); ?></td>
                 <td class="align-middle"><?= $posts[$i]->getCreated_at(); ?></td>
                 <?php
-            if (Securite::estUtilisateur() || !Securite::estConnecte()) { ?>
-                <td class="align-middle"><a href="<?= URL ?>blog/afficherUnPost/<?= $posts[$i]->getId(); ?>" class="btn btn-primary">Comments</a></td>
-            <?php    } else { ?>
-                <td class="align-middle"><a href="<?= URL ?>blog/modify/<?= $posts[$i]->getId(); ?>" class="btn btn-warning">Edit</a></td>
-                <td class="align-middle">            
-                    <form method="POST" action="<?= URL ?>blog/delete/<?= $posts[$i]->getId(); ?>" onSubmit="return confirm('Voulez-vous vraiment supprimer le livre ?');">
+                if (Securite::estUtilisateur() || !Securite::estConnecte()) { ?>
+                    <td class="align-middle"><a href="<?= URL ?>blog/afficherUnPost/<?= $posts[$i]->getId(); ?>" class="btn btn-primary">Comments</a></td>
+                <?php    } else { ?>
+                    <td class="align-middle"><a href="<?= URL ?>blog/afficherUnPost/<?= $posts[$i]->getId(); ?>" class="btn btn-primary">Comments</a></td>
+                    <td class="align-middle"><a href="<?= URL ?>blog/modify/<?= $posts[$i]->getId(); ?>" class="btn btn-warning">Edit</a></td>
+                    <td class="align-middle">
+                        <form method="POST" action="<?= URL ?>blog/delete/<?= $posts[$i]->getId(); ?>" onSubmit="return confirm('Voulez-vous vraiment supprimer le livre ?');">
                             <button class="btn btn-danger" type="submit">Delete</button>
-                    </form>
-                </td>
-            <?php   } ?>            
+                        </form>
+                    </td>
+                <?php   } ?>
             </tr>
         <?php endfor; ?>
     </table>
+    <a href="<?= URL ?>blog/add" class="btn btn-success d-block">Add post</a>

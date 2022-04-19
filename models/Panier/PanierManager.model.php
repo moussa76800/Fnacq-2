@@ -12,19 +12,20 @@ class PanierManager extends  MainManager
 
     private $livres;
     private $hifis;
+    private $UserPanier;
 
     public function __construct()
     {
         $this->livres = new LivreController();
         $this->hifis = new HifiController();
-
+        $this->UserPanier = $_SESSION['profil']['login'];
         $this->panier = array();
     }
 
     public function panier_data()
     {
-        if (isset($_COOKIE['panier'])) {
-            $result = json_decode($_COOKIE['panier'], true);
+        if (isset($_COOKIE[$this->UserPanier])) {
+            $result = json_decode($_COOKIE[$this->UserPanier], true);
         } else {
             $result = null;
         }
@@ -32,12 +33,12 @@ class PanierManager extends  MainManager
     }
 
     public function delLivre($id){
-        $panier = json_decode($_COOKIE['panier'], true);
+        $panier = json_decode($_COOKIE[$this->UserPanier], true);
         foreach ($panier as $key => $value) {
             if ($panier[$key]['Valeur_Id'] == $id) {
                 unset($panier[$key]);
                 $chaine = json_encode($panier);
-                setcookie("panier", $chaine, time() + 365 * 24 * 3600, '/');
+                setcookie($this->UserPanier, $chaine, time() + 365 * 24 * 3600, '/');
             }
         }
     }
@@ -48,8 +49,8 @@ class PanierManager extends  MainManager
         if ($quantity > 10) {
             $quantity = 10;
         }
-        if (isset($_COOKIE['panier'])) {
-            $panier = json_decode($_COOKIE['panier'], true);
+        if (isset($_COOKIE[$this->UserPanier])) {
+            $panier = json_decode($_COOKIE[$this->UserPanier], true);
         } else {
             $panier = array();
         }
@@ -77,15 +78,15 @@ class PanierManager extends  MainManager
             $panier[] = $valeur;
         }
         $chaine = json_encode($panier);
-        setcookie("panier", $chaine, time() + 365 * 24 * 3600, '/');
+        setcookie($this->UserPanier, $chaine, time() + 365 * 24 * 3600, '/');
     }
     public function delHifi($id){
-        $panier = json_decode($_COOKIE['panier'], true);
+        $panier = json_decode($_COOKIE[$this->UserPanier], true);
         foreach ($panier as $key => $value) {
             if ($panier[$key]['Valeur_Id'] == $id) {
                 unset($panier[$key]);
                 $chaine = json_encode($panier);
-                setcookie("panier", $chaine, time() + 365 * 24 * 3600, '/');
+                setcookie($this->UserPanier, $chaine, time() + 365 * 24 * 3600, '/');
             }
         }
     }
@@ -96,8 +97,8 @@ class PanierManager extends  MainManager
         if ($quantity > 10) {
             $quantity = 10;
         }
-        if (isset($_COOKIE['panier'])) {
-            $panier = json_decode($_COOKIE['panier'], true);
+        if (isset($_COOKIE[$this->UserPanier])) {
+            $panier = json_decode($_COOKIE[$this->UserPanier], true);
         } else {
             $panier = array();
         }
@@ -125,6 +126,6 @@ class PanierManager extends  MainManager
             $panier[] = $valeur;
         }
         $chaine = json_encode($panier);
-        setcookie("panier", $chaine, time() + 365 * 24 * 3600, '/');
+        setcookie($this->UserPanier, $chaine, time() + 365 * 24 * 3600, '/');
     }
 }

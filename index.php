@@ -95,6 +95,10 @@ try {
                 $panierController->delHifis($url[2]);
                 Toolbox::ajouterMessageAlerte("L'article a bien été supprimé !!", Toolbox::COULEUR_VERTE);
                 header('Location: ' . URL . "panier");
+            } else if ($url[1] === "achat") {
+                $panierController->achatPanier();
+                Toolbox::ajouterMessageAlerte("Merci pour vos achat à bientôt !!", Toolbox::COULEUR_VERTE);
+                header('Location: ' . URL . "panier");
             }
        
             break;

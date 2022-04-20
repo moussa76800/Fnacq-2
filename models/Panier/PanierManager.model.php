@@ -18,7 +18,9 @@ class PanierManager extends  MainManager
     {
         $this->livres = new LivreController();
         $this->hifis = new HifiController();
-        $this->UserPanier = $_SESSION['profil']['login'];
+        if (isset($_SESSION['profil'])) {
+            $this->UserPanier = $_SESSION['profil']['login'];
+        }
         $this->panier = array();
     }
 
@@ -89,6 +91,10 @@ class PanierManager extends  MainManager
                 setcookie($this->UserPanier, $chaine, time() + 365 * 24 * 3600, '/');
             }
         }
+    }
+
+    public function achatPanier(){
+        setcookie($this->UserPanier,"",time() - (365 * 24 * 3600), '/');
     }
     
     public function addHifi($id, $quantity)

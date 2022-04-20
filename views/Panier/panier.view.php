@@ -35,7 +35,6 @@ $livreManager=new LivreManager();
 		<div class="row">
 			<div class="col-md-12">
 				<ol class="breadcrumb">
-
 				</ol>
 			</div>
 		</div>
@@ -48,8 +47,6 @@ $livreManager=new LivreManager();
 							<?= $_SESSION['profil']['login'] ?> -->
 						</h3>
 					</div>
-					<br>
-					<br>
 					<h1 class="rounded border border-dark p-2 m-2 text-center text-white bg-success">LE PANIER</h1>
 					<table class="table text-center">
 						<tr class="table-dark">
@@ -60,7 +57,6 @@ $livreManager=new LivreManager();
 							<th>TOTAL PRICE</th>
 							<th>Action</th>
 						</tr>
-						
 						<?php $total = 0;
 						if (isset($result)) {	
 							foreach ($result as $key => $value) { ?>
@@ -72,20 +68,17 @@ $livreManager=new LivreManager();
 									<td class="align-middle"><?= intval($value['Valeur_Quantity']) * intval($value['Valeur_Price']); ?> Euros</td>
 									<td class="align-middle"><a class="btn btn-danger" href="<?= URL ?>panier/del/<?= $value['Valeur_Id']; ?>"><img src="public/Assets/images/icons/trash.svg"></a></td>
 								</tr>
-							<?php } ?>
-							<?php
-							$total = $total + ($value['Valeur_Quantity']*$value['Valeur_Price']);
+							<?php }
+								if (isset($value)) {
+									$total = $total + ($value['Valeur_Quantity']*$value['Valeur_Price']);
+								}
 							} ?>
 							<tr>
 								<td colspan="4" class="text-right"><strong>Total</strong></td>
-	
-	
 								<td><?php echo $total." euros" ?></td>
 							</tr>
-	
 						</table>
-
 				</div><br>
-				<a href="" class="btn btn-success pull-right ">Finaliser achat</a>
+				<a href="<?= URL ?>panier/achat" class="btn btn-success pull-right ">Finaliser achat</a>
 			</div>
 		</div>

@@ -46,4 +46,8 @@ public function afficherPanier(){
         $this->panierManager->addHifi($id,$quantity);
         
     }
+
+    public function achatPanier(){
+        $this->panierManager->achatPanier();
+    }
 }

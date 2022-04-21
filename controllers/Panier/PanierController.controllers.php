@@ -8,7 +8,6 @@ require_once "./models/Hifi/Hifi.class.php";
 
 class PanierController extends MainController
 {
-
     private $panierManager;
 
     public function __construct()
@@ -28,25 +27,18 @@ public function afficherPanier(){
         $this->genererPage($data_page);
     }
 
-    public function delLivres($id){
-        $this->panierManager->delLivre($id);
+    public function delArticle($id,$category){
+        $this->panierManager->delArticle($id,$category);
     }
 
-    public function addLivres($id,$quantity)
-    {
-        $this->panierManager->addLivre($id,$quantity);
-        
+    public function addArticle($id,$category,$title,$quantity){
+        $this->panierManager->addArticle($id,$category,$title,$quantity);
     }
+
     public function delHifis($id){
         $this->panierManager->delHifi($id);
     }
-
-    public function addHifis($id,$quantity)
-    {
-        $this->panierManager->addHifi($id,$quantity);
-        
-    }
-
+    
     public function achatPanier(){
         $this->panierManager->achatPanier();
     }

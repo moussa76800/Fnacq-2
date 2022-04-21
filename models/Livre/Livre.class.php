@@ -7,12 +7,14 @@ class Livre {
     private $numbersOfPages;
     private $price;
     private $image;
+    private $category;
 
    
 
-    public function __construct($id, $title, $authors, $numbersOfPages,$price, $image){
+    public function __construct($id, $category, $title, $authors, $numbersOfPages,$price, $image){
     
         $this->id = $id;
+        $this->category = $category;
         $this->title = $title;
         $this->authors = $authors;
         $this->numbersOfPages = $numbersOfPages;
@@ -23,6 +25,8 @@ class Livre {
 
     public function getId() { return $this->id;}
     public function setId($id) { $this->id=$id;}
+
+    public function getCategory(){return $this->category;}
      
     public function getTitle() { return $this->title;}
     public function setTitle($title) { $this->title=$title;}

@@ -8,7 +8,7 @@
     <img src="<?= URL ?>public/Assets/images/materielsHifi/<?= $hifi->getImage(); ?>">
     </div>
     <div class="col-6"style="font-weight: bold">
-        <p>Title : <?= $hifi->getArticle(); ?></p>
+        <p>Title : <?= $hifi->getTitle(); ?></p>
         <p>Author : <?= $hifi->getMarque(); ?></p>
         <p>Price : <?= $hifi->getPrice()." Euros"; ?></p>
     </div>

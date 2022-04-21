@@ -38,7 +38,7 @@ class HifiManager extends MainManager{
     
     
             foreach ($meshifis as $hifi) {
-                $hifis = new Hifi($hifi['id'], $hifi['article'], $hifi['marque'], $hifi['price'], $hifi['image']);
+                $hifis = new Hifi($hifi['id'], $hifi['category'], $hifi['article'], $hifi['marque'], $hifi['price'], $hifi['image']);
                 $this->ajoutHifi($hifis);
             }
         }
@@ -55,9 +55,10 @@ class HifiManager extends MainManager{
     
         public function ajoutLivreBd( $article, $marque, $price, $image)
         {
-            $req = "INSERT INTO hifi (article,marque,price,image)
-                    values (:article, :marque, :price, :image)";
+            $req = "INSERT INTO hifi (category,article,marque,price,image)
+                    values (:category,:article, :marque, :price, :image)";
             $stmt = $this->getBdd()->prepare($req);
+            $stmt->bindValue(":category", "hifi", PDO::PARAM_STR);
             $stmt->bindValue(":article", $article, PDO::PARAM_STR);
             $stmt->bindValue(":marque", $marque, PDO::PARAM_STR);
             $stmt->bindValue(":price", $price, PDO::PARAM_INT);

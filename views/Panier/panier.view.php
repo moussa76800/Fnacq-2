@@ -61,12 +61,12 @@ $livreManager=new LivreManager();
 						if (isset($result)) {	
 							foreach ($result as $key => $value) { ?>
 								<tr>
-									<td class="align-middle"><img src="public/Assets/images/livres/<?= $value['Valeur_Image']; ?>" width="60px;"></td>
+									<td class="align-middle"><img src="public/Assets/images/<?= $value['Valeur_Image']; ?>" width="60px;"></td>
 									<td class="align-middle"><?= $value['Valeur_Title']; ?></a></td>
 									<td class="align-middle"><?= $value['Valeur_Price']; ?> Euros</td>
 									<td class="align-middle"><?= $value['Valeur_Quantity']; ?> quantity</td>
 									<td class="align-middle"><?= intval($value['Valeur_Quantity']) * intval($value['Valeur_Price']); ?> Euros</td>
-									<td class="align-middle"><a class="btn btn-danger" href="<?= URL ?>panier/del/<?= $value['Valeur_Id']; ?>"><img src="public/Assets/images/icons/trash.svg"></a></td>
+									<td class="align-middle"><a class="btn btn-danger" href="<?= URL ?>panier/del/<?= $value['Valeur_Id']; ?>/<?= $value['Valeur_Category']; ?>"><img src="public/Assets/images/icons/trash.svg"></a></td>
 								</tr>
 							<?php }
 								if (isset($value)) {

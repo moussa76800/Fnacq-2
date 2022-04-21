@@ -50,7 +50,7 @@ try {
                 $hifiController->afficherUnHifi($url[2]);
             } else if ($url[1] === "buy") {
                 if (isset($_POST['addPanier'])) {
-                    $panierController->addHifis($_POST['id'], $_POST['quantity']);
+                    $panierController->addArticle($_POST['id'], $_POST['category'],$_POST['title'], $_POST['quantity']);
                     $hifiController->buyHifi($url[2]);
                     /* header('Location: ' . URL . "livres"); */
                 } else {
@@ -74,7 +74,7 @@ try {
                 $livreController->afficherUnLivre($url[2]);
             } else if ($url[1] === "buy") {
                 if (isset($_POST['addPanier'])) {
-                    $panierController->addLivres($_POST['id'], $_POST['quantity']);
+                    $panierController->addArticle($_POST['id'], $_POST['category'],$_POST['title'], $_POST['quantity']);
                     $livreController->buyLivre($url[2]);
                     /* header('Location: ' . URL . "livres"); */
                 } else {
@@ -91,8 +91,7 @@ try {
             if (empty($url[1])) {
                 $panierController->afficherPanier();
             } else if ($url[1] === "del") {
-                $panierController->delLivres($url[2]);
-                $panierController->delHifis($url[2]);
+                $panierController->delArticle($url[2],$url[3]);
                 Toolbox::ajouterMessageAlerte("L'article a bien été supprimé !!", Toolbox::COULEUR_VERTE);
                 header('Location: ' . URL . "panier");
             } else if ($url[1] === "achat") {

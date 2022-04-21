@@ -31,7 +31,7 @@ class LivreManager extends MainManager
 
 
         foreach ($meslivres as $livre) {
-            $livres = new Livre($livre['id'], $livre['title'], $livre['authors'], $livre['numbersOfPages'], $livre['price'], $livre['image']);
+            $livres = new Livre($livre['id'], $livre['category'], $livre['title'], $livre['authors'], $livre['numbersOfPages'], $livre['price'], $livre['image']);
             $this->ajoutLivre($livres);
         }
     }
@@ -48,9 +48,10 @@ class LivreManager extends MainManager
 
     public function ajoutLivreBd($title, $authors, $numbersOfPages, $price, $image)
     {
-        $req = "INSERT INTO livres (title,authors,numbersOfPages,price,image)
-                values (:title, :author, :numbersOfPages, :price, :image)";
+        $req = "INSERT INTO livres (category,title,authors,numbersOfPages,price,image)
+                values (:category,:title, :author, :numbersOfPages, :price, :image)";
         $stmt = $this->getBdd()->prepare($req);
+        $stmt->bindValue(":category", "livre", PDO::PARAM_STR);
         $stmt->bindValue(":title", $title, PDO::PARAM_STR);
         $stmt->bindValue(":author", $authors, PDO::PARAM_STR);
         $stmt->bindValue(":numbersOfPages", $numbersOfPages, PDO::PARAM_INT);

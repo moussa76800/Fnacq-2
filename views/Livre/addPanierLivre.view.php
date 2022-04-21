@@ -62,7 +62,10 @@
 										<td>
 											<form method="POST" class="form-inline">
 												<input class="form-control" name="quantity" type="int" value="1">
-												<input type="hidden" name="id" value="<?= $livree->getId(); ?>">											
+												<input type="hidden" name="id" value="<?= $livree->getId(); ?>">
+												<input type="hidden" name="category" value="livre">
+												<input type="hidden" name="title" value="<?= $livree->getTitle(); ?>">
+
 										</td>
 										<td><?= number_format($livree->getPrice(), 2, ',', ' '); ?> Euros</td>
 										<td><?= $livree->getPrice(); ?> Euros</td>

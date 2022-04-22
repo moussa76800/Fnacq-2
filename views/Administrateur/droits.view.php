@@ -10,15 +10,9 @@
             <th>Valid</th>
             <th>Rôle</th>
             <th>Profil</th>
-            <td>Last 5 comments</th>
-            <td>number of connections in of</th>
-
-
-
         </tr>
         <?php foreach ($utilisateurs as $utilisateur) : ?>
             <tr>
-                
                 <td><?= $utilisateur['login'] ?></td>
                 <td><?= (int)$utilisateur['est_valide'] === 0 ? "non validé" : "validé" ?></td>
                 <td>
@@ -37,25 +31,6 @@
                 </td>
 
                 <td><a href="showProfilUser/<?= $utilisateur['login'] ?>" class="btn btn-success d-block">Voir Profil</a></td>
-                <td><a href="showCommentUser\<?= $utilisateur['login'] ?>" class="btn btn-success d-block">Voir 5 derniers commentaires</a></td>
-                <td>
-                    <form>
-                        <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-                            <option selected>Choose...</option>
-                            <option value="1">Today</option>
-                            <option value="2">Yesterday</option>
-                            <option value="3">Before yesterday</option>
-                            <option value="4">Day -4</option>
-                            <option value="5">Day -5</option>
-                            <option value="6">Day -6</option>
-                            <option value="7">Day -7</option>
-                            <option value="8">Day -8</option>
-                            
-                           
-                        </select>
-                        </div>
-                    </form>
-                </td>
 
             </tr>
         <?php endforeach; ?>

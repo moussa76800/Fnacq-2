@@ -3,6 +3,7 @@
 
 require_once "./controllers/MainController.controller.php";
 require_once "./models/Utilisateur/UtilisateurModel.model.php";
+require_once "./functions/compteur.php";
 
 class UtilisateurController extends MainController
 {
@@ -25,6 +26,7 @@ class UtilisateurController extends MainController
             if ($this->utilisateurManager->estCompteActive($login)) {
                 Toolbox::ajouterMessageAlerte("Bon retour sur le site " . $login . " !", Toolbox::COULEUR_VERTE);
                 $_SESSION['profil'] = ["login" => $login];
+                add_connection();
                 header("Location: " . URL . "compte/profil");
                
                
@@ -106,19 +108,34 @@ class UtilisateurController extends MainController
     }
 
 
-    public function profil()
+    public function profil($login)
     {
-        $datas = $this->utilisateurManager->getUserInformation($_SESSION['profil']['login']);
-        $_SESSION['profil']['role'] = $datas['role'];
-
-        $data_page = [
-            "page_description" => "Page du Profil",
-            "page_title" => "Page du Profil",
-            "utilisateur" => $datas,
-            "page_javascript" => ["profil.js"],
-            "view" => "views/Utilisateur/profil.view.php",
-            "template" => "views/common/template.php"
-        ];
+        if (!isset($login)) {
+            $datas = $this->utilisateurManager->getUserInformation($_SESSION['profil']['login']);
+            $_SESSION['profil']['role'] = $datas['role'];
+        } else {
+            $datas = $this->utilisateurManager->getUserInformation($login);
+        }
+        
+        if ($_SESSION['profil']['role'] == 'administrateur') {
+            $data_page = [
+                "page_description" => "Page du Profil",
+                "page_title" => "Page du Profil",
+                "utilisateur" => $datas,
+                "page_javascript" => ["profil.js"],
+                "view" => "views/Utilisateur/profil.view.php",
+                "template" => "views/common.dashboard/templateDash.php"
+            ];
+        } else {
+            $data_page = [
+                "page_description" => "Page du Profil",
+                "page_title" => "Page du Profil",
+                "utilisateur" => $datas,
+                "page_javascript" => ["profil.js"],
+                "view" => "views/Utilisateur/profil.view.php",
+                "template" => "views/common/template.php"
+            ];
+        }
         $this->genererPage($data_page);
     }
     public function validation_modificationImage($file)

@@ -1,21 +1,16 @@
-
-<div class="text-center">
-    <h1 class="rounded border border-dark p-2 m-2 text-center text-white bg-success">Bienvenue dans ta page de profil,<?= $utilisateur['login'] ?></h1>
- <?php
-require ("./functions/compteur.php");
-ajouter_vue()
+<?php 
+    $total=nb_vues($utilisateur['login']);
+    $total7=nb_vues_sept($utilisateur['login']);
 ?>
-<h2 class="rounded border border-dark p-2 m-2 text-center ">Nombre de connexion : <?=nb_vues()?>
-<!-- <h2 class="rounded border border-dark p-2 m-2 text-center ">Nombre de connexion : <a href="http://www.mon-compteur.fr"><img src="http://www.mon-compteur.fr/html_c02genv2-74685-1" border="0" /></a> -->
-    <div>
-        <div>            
-            
+<div class="rounded border border-dark p-2 m-2 text-center ">
+    <h1 class="rounded border border-dark p-2 m-2 text-center text-white bg-success">Profil : <?= $utilisateur['login'] ?></h1>
 
+    <div>
+        <div>
             <img src="<?= URL; ?>public/Assets/images/<?= $utilisateur['image'] ?>" width="100px" alt="photo de profil" />
         </div>
         <form method="POST" action="<?= URL ?>compte/validation_modificationImage" enctype="multipart/form-data">
-            <label for="image">Changer l'image du profil :</label><br>
-            <br>
+            <label for="image">Changer l'image du profil :</label>
             <input type="file" class="form-control-file" id="image" name="image" onchange="submit();" />
         </form>
     </div>
@@ -50,6 +45,22 @@ ajouter_vue()
         <a href="<?= URL ?>compte/modificationPostal" class="btn btn-warning">Changer le code postal</a>
         <a href="<?= URL ?>compte/modificationPassword" class="btn btn-warning">Changer le mot de passe</a>
         <a href="<?= URL ?>compte/ validation_suppressionCompte" class="btn btn-danger">Supprimer son compte</a>
-
     </div>
 </div>
+
+<?php if (Securite::estAdministrateur()) { ?>
+<div class='row'>
+    <div class='col-md-4'>
+        <div class='card'>
+            <div class="card-body">
+                <strong style="font-size:3em;"><?= $total ?></strong><br>
+                Visite<?= $total>1?'s':''?> aujourd'hui
+            </div>
+            <div class="card-body">
+                <strong style="font-size:3em;"><?= $total7 ?></strong><br>
+                Visite<?= $total>1?'s':''?> ces 7 derniers jours
+            </div>
+        </div>
+    </div>
+</div>
+    <?php } ?>

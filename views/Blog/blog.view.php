@@ -40,4 +40,4 @@
             </tr>
         <?php endfor; ?>
     </table>
-    <a href="<?= URL ?>blog/add" class="btn btn-success d-block">Add post</a>
+    <a href="<?= URL ?>blog/add" class="btn btn-success d-block">Add blog</a>

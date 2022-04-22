@@ -217,7 +217,7 @@ try {
             } else {
                 switch ($url[1]) {
                     case "profil":
-                        $utilisateurController->profil();
+                        $utilisateurController->profil(null);
                         break;
 
                     case "deconnection":
@@ -294,8 +294,9 @@ try {
                         $administrateurController->validation_modificationRole($_POST['login'], $_POST['role'], $_POST['est_valide']);
                         break;
                     case "showProfilUser":
-                        $administrateurController->showProfilUser($url[2]);
-                        header("Location: " . URL . "showProfilUser.view.php");
+                        $utilisateurController->profil($url[2]);
+                        /* $administrateurController->showProfilUser($url[2]);
+                        header("Location: " . URL . "showProfilUser.view.php"); */
                         break;
                     case "showCommentUser":
                         $administrateurController->showCommentUser($url[2]);

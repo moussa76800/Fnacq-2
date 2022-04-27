@@ -18,10 +18,6 @@
         <label for="content">Content : </label>
         <input type="text" class="form-control" id="content" name="content">
     </div>
-    <div class="form-group"style="font-weight: bold">
-        <label for="created_at">created_at: </label>
-        <input type="date" class="form-control" id="created_at" name="created_at">
-    </div>
     <br>
     <div class="form-group"style="font-weight: bold">
         <label for="image">Image : </label>

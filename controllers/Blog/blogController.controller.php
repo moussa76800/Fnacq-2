@@ -98,9 +98,9 @@ class BlogController extends MainController
         $file = $_FILES['image'];
         $repertoire = "public/Assets/images/blog/";
         $nomImageAjoute = $this->ajoutImage($file, $repertoire);
-        $this->blogManager->ajoutPostBd($_POST['title'],$_POST['author'], $_POST['content'], $_POST['created_at'], $nomImageAjoute);
+        $this->blogManager->ajoutPostBd($_POST['title'],$_POST['author'], $_POST['content'], $nomImageAjoute);
 
-        header('Location: ' . URL . "administration/blog");
+        header('Location: ' . URL . "blog");
     } 
 
 
@@ -135,7 +135,7 @@ class BlogController extends MainController
         $nomImage = $this->blogManager->getPostById($id)->getImage();
         unlink("public/Assets/images/blog/" . $nomImage);
         $this->blogManager->suppressionPostBD($id);  
-        header('Location: ' . URL . "administration/blog");
+        header('Location: ' . URL . "blog");
     }
 
 
@@ -179,9 +179,9 @@ class BlogController extends MainController
         } else {
             $nomImageAjoute = $imageActuelle;
         }
-        $this->blogManager->modificationPostBD($_POST['identifiant'],$_POST['author'],$_POST['title'],$_POST['content'],$_POST['created_at'],$nomImageAjoute);
+        $this->blogManager->modificationPostBD($_POST['identifiant'],$_POST['author'],$_POST['title'],$_POST['content'],$nomImageAjoute);
         
-        header('Location: '. URL . "administration/blog");
+        header('Location: '. URL . "blog");
     }
 }
 

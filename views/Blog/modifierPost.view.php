@@ -20,10 +20,6 @@
         <input type="text" class="form-control" id="content" name="content" value="<?= $post->getContent() ?>">
     </div>
 
-    <div class="form-group"style="font-weight: bold">
-        <label for="created_at">Created_at: </label>
-        <input type="date" class="form-control" id="created_at" name="created_at" value="<?= $post->getCreated_at() ?>">
-    </div>
 
     <h3>Image : </h3><br>
     <img src="<?= URL ?>public/Assets/images/blog/<?= $post->getImage() ?> " width="130px;">

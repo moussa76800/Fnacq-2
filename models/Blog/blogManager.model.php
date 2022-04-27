@@ -46,11 +46,11 @@ class BlogManager extends MainManager
 
 
 
-    public function ajoutPostBd($title, $author, $content, $created_at, $image)
+    public function ajoutPostBd($title, $author, $content, $image)
     {
 
         $req = "INSERT INTO posts (title,author,content,image,created_at)
-                    values (:title,:author,:content,:image,:created_at )";
+                    values (:title,:author,:content,:image,now() )";
         $stmt = $this->getBdd()->prepare($req);
 
 
@@ -58,14 +58,14 @@ class BlogManager extends MainManager
         $stmt->bindValue(":author", $author, PDO::PARAM_STR);
         $stmt->bindValue(":content", $content, PDO::PARAM_STR);
         $stmt->bindValue(":image", $image, PDO::PARAM_STR);
-        $stmt->bindValue(":created_at", $created_at, PDO::PARAM_STR);
+       
 
 
         $resultat = $stmt->execute();
         $stmt->closeCursor();
 
         if ($resultat > 0) {
-            $post = new Blog($this->getBdd()->lastInsertId(), $title, $author, $content,$image, $created_at );
+            $post = new Blog($this->getBdd()->lastInsertId(), $title, $author, $content,$image, localtime() );
             $this->ajoutPost($post);
         }
     }
@@ -86,11 +86,11 @@ class BlogManager extends MainManager
         }
     }
 
-    public function modificationPostBD($id, $author, $title, $content,$image, $created_at )
+    public function modificationPostBD($id, $author, $title, $content,$image )
     {
 
         $req = 'update posts
-        SET author = :author,title = :title, content = :content,image = :image,created_at = :created_at 
+        SET author = :author,title = :title, content = :content,image = :image,created_at = now() 
     where id = :id';
 
         $stmt = $this->getBdd()->prepare($req);
@@ -99,7 +99,7 @@ class BlogManager extends MainManager
         $stmt->bindValue(":title", $title, PDO::PARAM_STR);
         $stmt->bindValue(":content", $content, PDO::PARAM_STR);
         $stmt->bindValue(":image", $image, PDO::PARAM_STR);
-        $stmt->bindValue(":created_at", $created_at, PDO::PARAM_STR);
+       
         
         $resultat = $stmt->execute();
         $stmt->closeCursor();
@@ -109,7 +109,7 @@ class BlogManager extends MainManager
             $this->getPostById($id)->setAuthor($author);
             $this->getPostById($id)->setContent($content);
             $this->getPostById($id)->setImage($image);
-            $this->getPostById($id)->setCreated_at($created_at);
+          
         }
     }
 

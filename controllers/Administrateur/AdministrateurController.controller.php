@@ -93,7 +93,7 @@ class AdministrateurController extends MainController
     }
 
 
-    public function afficherUnLivre($id)
+    /* public function afficherUnLivre($id)
     {
         $livre = $this->administrateurManager->getLivreById($id);
         $data_page = [
@@ -204,7 +204,7 @@ class AdministrateurController extends MainController
         $this->livreManager->modificationLivreBD($_POST['identifiant'],$_POST['title'],$_POST['author'],$_POST['numbersOfPages'],$_POST['price'],$nomImageAjoute);
         
         header('Location: '. URL .  "administration/livres");
-    }
+    } */
    
 
 

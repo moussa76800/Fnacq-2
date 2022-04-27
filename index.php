@@ -72,6 +72,16 @@ try {
                 $livreController->afficherLivres();
             } else if ($url[1] === "display") {
                 $livreController->afficherUnLivre($url[2]);
+            } else if ($url[1] ===  "modify") {
+                $livreController->modificationLivre($url[2]);
+            } else if ($url[1] ===  "validationModif") {
+                $livreController->modifLivreValidation();
+            } else if ($url[1] ===  "add") {
+                $livreController->ajoutLivre();
+            } else if ($url[1] ===  "validationAjout") {
+                $livreController->ajoutLivreValidation();
+            } else if ($url[1] === "delete") {
+                $livreController->suppressionLivre($url[2]);
             } else if ($url[1] === "buy") {
                 if (isset($_POST['addPanier'])) {
                     $panierController->addLivres($_POST['id'], $_POST['quantity']);
@@ -87,7 +97,7 @@ try {
             break;
 
         case "panier":
-             
+
             if (empty($url[1])) {
                 $panierController->afficherPanier();
             } else if ($url[1] === "del") {
@@ -100,7 +110,7 @@ try {
                 Toolbox::ajouterMessageAlerte("Merci pour vos achat à bientôt !!", Toolbox::COULEUR_VERTE);
                 header('Location: ' . URL . "panier");
             }
-       
+
             break;
 
         case "login":
@@ -184,7 +194,7 @@ try {
                         header("Location: " . URL . "blog/afficherUnPost/" . $_POST['idPost']);
                     }
                 } else {
-                    Toolbox::ajouterMessageAlerte("Vous n'avez pas accès à ces services !! .", Toolbox::COULEUR_ROUGE);
+                    Toolbox::ajouterMessageAlerte("Veuillez vous connectez ou vous inscrire pour intéragir dans le blog!! ", Toolbox::COULEUR_ROUGE);
                     header('Location: ' . URL . "accueil");
                 }
             } else if (!Securite::estUtilisateur() && Securite::estAdministrateur()) {
@@ -306,7 +316,7 @@ try {
                         $administrateurController->showConnexionUser($url[2]);
                         header("Location: " . URL . "showConnexionUser.view.php");
                         break;
-                    case "modify":
+                        /*  case "modify":
                         $administrateurController->modificationLivre($url[2]);
                         break;
                     case "validationModif":
@@ -320,8 +330,8 @@ try {
                         break;
                     case "delete":
                         $administrateurController->suppressionLivre($url[2]);
-                        break;
-                   /*  case "modify":
+                        break; */
+                        /*  case "modify":
                         $blogController->modificationPost($url[2]);
                         break;
                     case "validationModif":

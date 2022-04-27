@@ -21,11 +21,19 @@
             <td class="align-middle"><a href="<?= URL ?>materielsHifi/display/<?= $hifi[$i]->getId(); ?>"><?= $hifi[$i]->getArticle(); ?></a></td>
             <td class="align-middle"><?=$hifi[$i]->getMarque();?></td>
             <td class="align-middle"><?=$hifi[$i]->getPrice();?> Euros</td>
-           
+            <?php 
+            if (Securite::estUtilisateur() || !Securite::estConnecte()) { ?>
                 <form> 
              <td class="align-middle"><a href="<?= URL ?>materielsHifi/buy/<?= $hifi[$i]->getId(); ?>" class="btn btn-info">Buy</a></td>
         </td></form>
-           
+        <?php    } else { ?>
+        <td class="align-middle"><a href="<?= URL ?>livres/modify/<?= $hifi[$i]->getId(); ?>" class="btn btn-warning">Edit</a></td>
+                <td class="align-middle">
+            <!-- TO DO  URL delete -->
+                <form method="POST" action="<?= URL ?>livres/delete/<?= $hifi[$i]->getId(); ?>" onSubmit="return confirm('Voulez-vous vraiment supprimer le livre ?');">
+                    <button class = "btn btn-danger" type="submit">Delete</button>
+                </form></td>
+            <?php   } ?>
         </tr>
         <?php endfor; ?>
  </table>

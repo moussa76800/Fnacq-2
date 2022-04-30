@@ -3,4 +3,4 @@
 <br>
     
 <br>
-<p class="text-center"> .....Bienvenue dans le dahsboard de l'administrateur....</p>
+<h2 class="text-center"> .....Bienvenue dans le dahsboard de l'administrateur....</h2>

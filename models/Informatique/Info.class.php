@@ -1,5 +1,5 @@
 <?php
-class Hifi {
+class Info {
 
     private $id;
     private $article;

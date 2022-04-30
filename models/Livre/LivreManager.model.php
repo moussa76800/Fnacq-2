@@ -61,7 +61,7 @@ class LivreManager extends MainManager
         $stmt->closeCursor();
 
         if ($resultat > 0) {
-            $livre = new Livre($this->getBdd()->lastInsertId(), $title, $authors, $numbersOfPages, $price, $image);
+            $livre = new Livre($this->getBdd()->lastInsertId(),"livre", $title, $authors, $numbersOfPages, $price, $image);
             $this->ajoutLivre($livre);
         }
     }

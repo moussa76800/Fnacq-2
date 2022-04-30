@@ -35,9 +35,9 @@ public function afficherPanier(){
         $this->panierManager->addArticle($id,$category,$title,$quantity);
     }
 
-    public function delHifis($id){
+   /*  public function delHifis($id){
         $this->panierManager->delHifi($id);
-    }
+    } */
     
     public function achatPanier(){
         $this->panierManager->achatPanier();

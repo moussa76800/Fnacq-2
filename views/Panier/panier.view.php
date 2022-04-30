@@ -1,10 +1,14 @@
 <?php 
 require_once("./models/Livre/Livre.class.php");
 require_once("./models/Hifi/Hifi.class.php");
+require_once("./models/Informatique/Info.class.php");
 require_once("./models/Livre/LivreManager.model.php");
 require_once("./models/Hifi/HifiManager.model.php");
+require_once("./models/Informatique/InformatiqueManager.model.php");
+
 
 $livreManager=new LivreManager();
+
 ?>
 
 <style>

@@ -57,14 +57,14 @@
 									<tr>
 										<td><img src="<?= URL ?>public/Assets/images/materielshifi/<?= $hifie->getImage(); ?>" class="img-cart"></td>
 										<td><strong>Product </strong>
-											<p><a href="<?= URL ?>materielsHifi/display/<?= $hifie->getId(); ?>"><?= $hifie->getArticle(); ?></a></p>
+											<p><a href="<?= URL ?>materielsHifi/display/<?= $hifie->getId(); ?>"><?= $hifie->getTitle(); ?></a></p>
 										</td>
 										<td>
 											<form method="POST" class="form-inline">
 												<input class="form-control" name="quantity" type="int" value="1">
 												<input type="hidden" name="id" value="<?= $hifie->getId(); ?>">
 												<input type="hidden" name="category" value="hifi">
-												<input type="hidden" name="title" value="<?= $hifie->getArticle(); ?>">											
+												<input type="hidden" name="title" value="<?= $hifie->getTitle(); ?>">											
 										</td>
 										<td><?= number_format($hifie->getPrice(), 2, ',', ' '); ?> Euros</td>
 										<td><?= $hifie->getPrice(); ?> Euros</td>

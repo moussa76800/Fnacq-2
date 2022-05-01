@@ -3,8 +3,8 @@
 
 <form method="POST" action="<?= URL ?>materielsHifi/validationModif" enctype="multipart/form-data">
     <div class="form-group"style="font-weight: bold">
-        <label for="article">Article : </label>
-        <input type="text" class="form-control" id="article" name="article" value="<?= $hifi->getArticle() ?>">
+        <label for="title">Article : </label>
+        <input type="text" class="form-control" id="title" name="title" value="<?= $hifi->getTitle() ?>">
     </div>
 
     <div class="form-group"style="font-weight: bold">

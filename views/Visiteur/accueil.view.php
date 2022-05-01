@@ -94,15 +94,15 @@
 <BR>
 <DIV>
 <hr class="featurette-divider">
-<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+<div id="carouselExampleControls" class="carousel slide " data-bs-ride="carousel">
   <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="public/Assets/images/livres/virus.png" class="d-block w-10 " alt="..."><br>
+    <div class="carousel-item active ">
+      <img src="public/Assets/images/livres/virus.png" class="d-block w-10  " alt="..."><br>
       <h1><bold> Title : Le virus informatique d'Asie</bold> </h1>
       <h3>Author : Lee Chao</h3><br>
        <h4> Price : 35 Euros </h4>    
     </div>
-    <div class="carousel-item">
+    <div class="carousel-item ">
       <img src="public/Assets/images/materielsHifi/casque.jpg" class="d-block w-20" alt="..."><br>
       <h1><bold> Article : Casque bluetooth </bold> </h1>
       <h3>Marque : Yamaha</h3><br>

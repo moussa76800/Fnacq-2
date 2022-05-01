@@ -56,9 +56,11 @@ class PanierManager extends  MainManager
         } elseif ($category == 'hifi') {
             $article = $this->hifis->addPanierHifi($id);
             $route = "MaterielsHifi";
-        }else 
-        $article = $this->infos->addPanierInfo($id);
-        $route = "MaterielsInformatiques";
+        } elseif ($category == 'informatique') {
+            $article = $this->infos->addPanierInfo($id);
+            $route = "MaterielsInformatiques";
+        }
+
         if ($quantity > 10) {
             $quantity = 10;
         }
@@ -85,7 +87,7 @@ class PanierManager extends  MainManager
                 $valeur = array(
                     'Valeur_Id' => $article->getId(),
                     'Valeur_Category' => $article->getCategory(),
-                    'Valeur_Title' => $article->getArticle(),
+                    'Valeur_Title' => $article->getTitle(),
                     'Valeur_Image' => "{$route}/{$article->getImage()}",
                     'Valeur_Price' => $article->getPrice(),
                     'Valeur_Quantity' => $quantity
@@ -96,7 +98,7 @@ class PanierManager extends  MainManager
             $valeur = array(
                 'Valeur_Id' => $article->getId(),
                 'Valeur_Category' => $article->getCategory(),
-                'Valeur_Title' => $article->getArticle(),
+                'Valeur_Title' => $article->getTitle(),
                 'Valeur_Image' => "{$route}/{$article->getImage()}",
                 'Valeur_Price' => $article->getPrice(),
                 'Valeur_Quantity' => $quantity

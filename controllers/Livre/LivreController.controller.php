@@ -41,6 +41,7 @@ class LivreController extends MainController
     public function addPanierLivre($id)
     {
         return $this->livreManager->getLivreById($id);
+
     }
     // panier
 
@@ -59,6 +60,7 @@ class LivreController extends MainController
     
     public function buyLivre($id){
         $livree = $this->livreManager->getLivreById($id);
+       
         $data_page = [
             "page_description" => "Panier",
             "page_title" => "Panier",

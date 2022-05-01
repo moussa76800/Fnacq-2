@@ -3,8 +3,8 @@
 
 <form method="POST" action="<?= URL ?>materielsInformatiques/validationModif" enctype="multipart/form-data">
     <div class="form-group"style="font-weight: bold">
-        <label for="article">Article : </label>
-        <input type="text" class="form-control" id="article" name="article" value="<?= $info->getArticle() ?>">
+        <label for="title">Article : </label>
+        <input type="text" class="form-control" id="title" name="title" value="<?= $info->getTitle() ?>">
     </div>
 
     <div class="form-group"style="font-weight: bold">

@@ -46,6 +46,7 @@ class LivreManager extends MainManager
         }
     }
 
+
     public function ajoutLivreBd($title, $authors, $numbersOfPages, $price, $image)
     {
         $req = "INSERT INTO livres (category,title,authors,numbersOfPages,price,image)

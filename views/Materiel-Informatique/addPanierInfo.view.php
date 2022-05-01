@@ -57,14 +57,14 @@
 									<tr>
 										<td><img src="<?= URL ?>public/Assets/images/materielsInformatiques/<?= $infoe->getImage(); ?>" class="img-cart"></td>
 										<td><strong>Product </strong>
-											<p><a href="<?= URL ?>materielsInformatiques/display/<?= $infoe->getId(); ?>"><?= $infoe->getArticle(); ?></a></p>
+											<p><a href="<?= URL ?>materielsInformatiques/display/<?= $infoe->getId(); ?>"><?= $infoe->getTitle(); ?></a></p>
 										</td>
 										<td>
 											<form method="POST" class="form-inline">
 												<input class="form-control" name="quantity" type="int" value="1">
 												<input type="hidden" name="id" value="<?= $infoe->getId(); ?>">
-												<input type="hidden" name="category" value="hifi">
-												<input type="hidden" name="article" value="<?= $infoe->getArticle(); ?>">											
+												<input type="hidden" name="category" value="informatique">
+												<input type="hidden" name="title" value="<?= $infoe->getTitle(); ?>">											
 										</td>
 										<td><?= number_format($infoe->getPrice(), 2, ',', ' '); ?> Euros</td>
 										<td><?= $infoe->getPrice(); ?> Euros</td>

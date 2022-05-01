@@ -72,11 +72,12 @@ $livreManager=new LivreManager();
 									<td class="align-middle"><?= intval($value['Valeur_Quantity']) * intval($value['Valeur_Price']); ?> Euros</td>
 									<td class="align-middle"><a class="btn btn-danger" href="<?= URL ?>panier/del/<?= $value['Valeur_Id']; ?>/<?= $value['Valeur_Category']; ?>"><img src="public/Assets/images/icons/trash.svg"></a></td>
 								</tr>
-							<?php }
+							<?php 
 								if (isset($value)) {
 									$total = $total + ($value['Valeur_Quantity']*$value['Valeur_Price']);
 								}
-							} ?>
+							}
+						} ?>
 							<tr>
 								<td colspan="4" class="text-right"><strong>Total</strong></td>
 								<td><?php echo $total." euros" ?></td>

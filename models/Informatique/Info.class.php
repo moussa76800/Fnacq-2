@@ -2,7 +2,7 @@
 class Info {
 
     private $id;
-    private $article;
+    private $title;
     private $marque;
     private $price;
     private $image;
@@ -10,11 +10,11 @@ class Info {
 
    
 
-    public function __construct($id, $category, $article, $marque,$price, $image){
+    public function __construct($id, $category, $title, $marque,$price, $image){
     
         $this->id = $id;
         $this->category = $category;
-        $this->article = $article;
+        $this->title = $title;
         $this->marque = $marque;
         $this->price = $price;
         $this->image = $image;
@@ -26,8 +26,8 @@ class Info {
 
     public function getCategory(){return $this->category;}
 
-    public function getArticle() { return $this->article;}
-    public function setArticle($article) { $this->article=$article;}
+    public function getTitle() { return $this->title;}
+    public function setTtitle($title) { $this->title=$title;}
      
     public function getMarque() { return $this->marque;}
     public function setMarque($marque) { $this->marque=$marque;}

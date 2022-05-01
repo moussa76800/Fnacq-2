@@ -3,8 +3,8 @@
 <BR>
 <form method="POST" action="<?= URL ?>materielsInformatiques/validationAjout" enctype="multipart/form-data">
     <div class="form-group"style="font-weight: bold">
-        <label for="article">Article : </label>
-        <input type="text" class="form-control" id="article" name="article">
+        <label for="title">Article : </label>
+        <input type="text" class="form-control" id="title" name="title">
     </div>
     <div class="form-group"style="font-weight: bold">
         <label for="marque">Marque : </label>

@@ -13,7 +13,7 @@
          for ($i=0; $i< count($hifi); $i++) : ?>
         <tr>
             <td class="align-middle"><img src="public/Assets/images/materielsHifi/<?= $hifi[$i]->getImage();?>" width="60px;"></td>
-            <td class="align-middle"><a href="<?= URL ?>materielsHifi/display/<?= $hifi[$i]->getId(); ?>"><?= $hifi[$i]->getArticle(); ?></a></td>
+            <td class="align-middle"><a href="<?= URL ?>materielsHifi/display/<?= $hifi[$i]->getId(); ?>"><?= $hifi[$i]->getTitle(); ?></a></td>
             <td class="align-middle"><?=$hifi[$i]->getMarque();?></td>
             <td class="align-middle"><?=$hifi[$i]->getPrice();?> Euros</td>
             <?php 

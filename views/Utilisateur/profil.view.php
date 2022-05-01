@@ -1,6 +1,7 @@
 <?php 
     $total=nb_vues($utilisateur['login']);
     $total7=nb_vues_sept($utilisateur['login']);
+    
 ?>
 <div class="rounded border border-dark p-2 m-2 text-center ">
     <h1 class="rounded border border-dark p-2 m-2 text-center text-white bg-success">Profil : <?= $utilisateur['login'] ?></h1>

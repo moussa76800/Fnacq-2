@@ -9,7 +9,7 @@
     <img src="<?= URL ?>public/Assets/images/materielsInformatiques/<?= $info->getImage(); ?>">
     </div>
     <div class="col-6"style="font-weight: bold">
-        <p>Article : <?= $info->getArticle(); ?></p>
+        <p>Article : <?= $info->getTitle(); ?></p>
         <p>Marque : <?= $info->getMarque(); ?></p>
         <p>Price : <?= $info->getPrice()." Euros"; ?></p>
     </div>

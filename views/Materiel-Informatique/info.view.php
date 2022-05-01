@@ -14,13 +14,13 @@
          for ($i=0; $i< count($info); $i++) : ?>
         <tr>
             <td class="align-middle"><img src="public/Assets/images/materielsInformatiques/<?= $info[$i]->getImage();?>" width="60px;"></td>
-            <td class="align-middle"><a href="<?= URL ?>materielsInformatiques/display/<?= $info[$i]->getId(); ?>"><?= $info[$i]->getArticle(); ?></a></td>
+            <td class="align-middle"><a href="<?= URL ?>materielsInformatiques/display/<?= $info[$i]->getId(); ?>"><?= $info[$i]->getTitle(); ?></a></td>
             <td class="align-middle"><?=$info[$i]->getMarque();?></td>
             <td class="align-middle"><?=$info[$i]->getPrice();?> Euros</td>
             <?php 
             if (Securite::estUtilisateur() || !Securite::estConnecte()) { ?>
                 <form> 
-             <td class="align-middle"><a href="<?= URL ?>materielsInformatique/buy/<?= $info[$i]->getId(); ?>" class="btn btn-info">Buy</a></td>
+             <td class="align-middle"><a href="<?= URL ?>materielsInformatiques/buy/<?= $info[$i]->getId(); ?>" class="btn btn-info">Buy</a></td>
         </td></form>
         <?php    } else { ?>
         <td class="align-middle"><a href="<?= URL ?>materielsInformatiques/modify/<?= $info[$i]->getId(); ?>" class="btn btn-warning">Edit</a></td>

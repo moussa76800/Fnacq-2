@@ -1,3 +1,12 @@
+
+<?php require_once ("./models/Utilisateur/UtilisateurModel.model.php");
+
+$utilisateurManager= new UtilisateurManager();
+
+$profil=$utilisateurManager->getImageUtilisateur($_SESSION['profil']['login']);
+
+?>
+
 <style>
 	.img-cart {
 		display: block;
@@ -36,10 +45,18 @@
 			<div class="col-md-12">
 				<div class="panel panel-info panel-shadow">
 					<div class="panel-heading">
-						<h3>
-							<img class="img-circle img-thumbnail" src="<?= URL; ?>public/Assets/images/profil/<?= $_SESSION['profil']['image'] ?>" width="100px" alt="photo de profil"><br>
-							<?= $_SESSION['profil']['login'] ?>
-						</h3>
+						<?php
+							if (Securite::estConnecte()) { 
+								
+								?>
+								<h3>
+									<img class="img-circle img-thumbnail" src="<?= URL; ?> public/Assets/images/profil/".$profil, width="100px" alt="photo de profil"><br>
+									<?php var_dump($profil)?><br>
+									Bienvenue dans ton panier, <?= $_SESSION['profil']['login'] ?>
+									
+								</h3>                 
+							<?php } ?>
+							<br>
 					</div>
 					<div class="panel-body">
 						<div class="table-responsive">

@@ -56,7 +56,7 @@ class InformatiqueController extends MainController
             "page_description" => "Affichage d'un article informatique",
             "page_title" => "Affichage d'un article informatique",
             "info"=>$info,
-            "view" => "views/Materiel-Informatique/afficherUninfo.view.php",
+            "view" => "views/Materiel-Informatique/afficherUnInfo.view.php",
             "template" => "views/common/template.php"
         ];
         $this->genererPage($data_page);
@@ -65,8 +65,8 @@ class InformatiqueController extends MainController
     public function buyInfo($id){
         $infoe = $this->informatiqueManager->getInfoById($id);
         $data_page = [
-            "page_description" => "Panier",
-            "page_title" => "Panier",
+            "page_description" =>"Panier",
+            "page_title" =>"Panier",
             "infoe"=>$infoe,
             "view" => "views/Materiel-Informatique/addPanierInfo.view.php",
             "template" => "views/common/template.php"

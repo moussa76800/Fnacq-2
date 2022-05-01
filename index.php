@@ -50,29 +50,28 @@ try {
                 $hifiController->afficherUnHifi($url[2]);
             } else if ($url[1] === "buy") {
                 if (isset($_POST['addPanier'])) {
-                    $panierController->addArticle($_POST['id'], $_POST['category'],$_POST['title'], $_POST['quantity']);
+                    $panierController->addArticle($_POST['id'], $_POST['category'], $_POST['title'], $_POST['quantity']);
                     $hifiController->buyHifi($url[2]);
                     /* header('Location: ' . URL . "livres"); */
                 } else {
-                    $hifiController->buyHifi($url[2]);
+                     $hifiController->buyHifi($url[2]);
                 }
-            } 
-            else if ($url[1] === "display") {
+            } else if ($url[1] === "display") {
                 $hifiController->afficherUnHifi($url[2]);
             } else if ($url[1] ===  "modify") {
                 $hifiController->modificationHifi($url[2]);
             } else if ($url[1] ===  "validationModif") {
                 $hifiController->modifHifiValidation();
-                Toolbox::ajouterMessageAlerte("Article modifier avec succes", Toolbox::COULEUR_VERTE); 
+                Toolbox::ajouterMessageAlerte("Article modifier avec succes", Toolbox::COULEUR_VERTE);
             } else if ($url[1] ===  "add") {
                 $hifiController->ajoutHifi();
             } else if ($url[1] ===  "validationAjout") {
                 $hifiController->ajoutHifiValidation();
-                Toolbox::ajouterMessageAlerte("Article ajouter avec succes", Toolbox::COULEUR_VERTE); 
+                Toolbox::ajouterMessageAlerte("Article ajouter avec succes", Toolbox::COULEUR_VERTE);
             } else if ($url[1] === "delete") {
-               $hifiController->suppressionLivre($url[2]);
-                Toolbox::ajouterMessageAlerte("Article supprimer avec succes", Toolbox::COULEUR_VERTE);  
-            }else {
+                $hifiController->suppressionLivre($url[2]);
+                Toolbox::ajouterMessageAlerte("Article supprimer avec succes", Toolbox::COULEUR_VERTE);
+            } else {
                 Toolbox::ajouterMessageAlerte("Vous ne pouvez pas accéder à ces options car vous n'êtes pas l'administrateur !!", Toolbox::COULEUR_ROUGE);
                 header('Location: ' . URL . "accueil");
             }
@@ -87,7 +86,7 @@ try {
                 $informatiqueController->modificationInfo($url[2]);
             } else if ($url[1] ===  "validationModif") {
                 $informatiqueController->modifInfoValidation();
-                Toolbox::ajouterMessageAlerte("Article modifier avec succes", Toolbox::COULEUR_VERTE); 
+                Toolbox::ajouterMessageAlerte("Article modifier avec succes", Toolbox::COULEUR_VERTE);
             } else if ($url[1] ===  "add") {
                 $informatiqueController->ajoutInfo();
             } else if ($url[1] ===  "validationAjout") {
@@ -98,9 +97,8 @@ try {
                 Toolbox::ajouterMessageAlerte("Article supprimer avec succes", Toolbox::COULEUR_VERTE);
             } else if ($url[1] === "buy") {
                 if (isset($_POST['addPanier'])) {
-                    $panierController->addArticle($_POST['id'], $_POST['category'],$_POST['title'], $_POST['quantity']);
+                    $panierController->addArticle($_POST['id'], $_POST['category'], $_POST['title'], $_POST['quantity']);
                     $informatiqueController->buyInfo($url[2]);
-                    /* header('Location: ' . URL . "livres"); */
                 } else {
                     $informatiqueController->buyInfo($url[2]);
                 }
@@ -119,7 +117,7 @@ try {
                 $livreController->modificationLivre($url[2]);
             } else if ($url[1] ===  "validationModif") {
                 $livreController->modifLivreValidation();
-                Toolbox::ajouterMessageAlerte("Article modifier avec succes", Toolbox::COULEUR_VERTE); 
+                Toolbox::ajouterMessageAlerte("Article modifier avec succes", Toolbox::COULEUR_VERTE);
             } else if ($url[1] ===  "add") {
                 $livreController->ajoutLivre();
             } else if ($url[1] ===  "validationAjout") {
@@ -130,7 +128,7 @@ try {
                 Toolbox::ajouterMessageAlerte("Article supprimer avec succes", Toolbox::COULEUR_VERTE);
             } else if ($url[1] === "buy") {
                 if (isset($_POST['addPanier'])) {
-                    $panierController->addArticle($_POST['id'], $_POST['category'],$_POST['title'], $_POST['quantity']);
+                    $panierController->addArticle($_POST['id'], $_POST['category'], $_POST['title'], $_POST['quantity']);
                     $livreController->buyLivre($url[2]);
                     /* header('Location: ' . URL . "livres"); */
                 } else {
@@ -147,7 +145,7 @@ try {
             if (empty($url[1])) {
                 $panierController->afficherPanier();
             } else if ($url[1] === "del") {
-                $panierController->delArticle($url[2],$url[3]);
+                $panierController->delArticle($url[2], $url[3]);
                 Toolbox::ajouterMessageAlerte("L'article a bien été supprimé !!", Toolbox::COULEUR_VERTE);
                 header('Location: ' . URL . "panier");
             } else if ($url[1] === "achat") {

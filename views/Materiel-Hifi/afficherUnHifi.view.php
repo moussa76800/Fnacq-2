@@ -10,8 +10,8 @@
     </div>
     
     <div class="col-6"style="font-weight: bold"><br><br>
-        <p>Title : <?= $hifi->getArticle(); ?></p>
-        <p>Author : <?= $hifi->getMarque(); ?></p>
+        <p>Article : <?= $hifi->getTitle(); ?></p>
+        <p>Marque : <?= $hifi->getMarque(); ?></p>
         <p>Price : <?= $hifi->getPrice()." Euros"; ?></p>
     </div>
 </div>

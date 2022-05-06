@@ -18,7 +18,7 @@
     </div>
 
     <h3>Image : </h3><br>
-    <img src="<?= URL ?>public/Assets/images/livres/<?= $hifi->getImage() ?> " width="130px;">
+    <img src="<?= URL ?>public/Assets/images/materielsHifi/<?= $hifi->getImage() ?> " width="130px;">
     <div class="form-group"style="font-weight: bold"><br>
         <label for="image">Changer image : </label>
         <input type="file" class="form-control-file" id="image" name="image">

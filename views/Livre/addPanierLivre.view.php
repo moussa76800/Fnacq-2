@@ -50,9 +50,9 @@ $profil=$utilisateurManager->getImageUtilisateur($_SESSION['profil']['login']);
 								
 								?>
 								<h3>
-									<img class="img-circle img-thumbnail" src="<?= URL; ?> public/Assets/images/profil/".$profil, width="100px" alt="photo de profil"><br>
-									<?php var_dump($profil)?><br>
-									Bienvenue dans ton panier, <?= $_SESSION['profil']['login'] ?>
+									<img class="img-circle img-thumbnail" src="<?= URL; ?>public/Assets/images/<?= $profil ?>", width="100px" alt="photo de profil"><br>
+								
+									
 									
 								</h3>                 
 							<?php } ?>

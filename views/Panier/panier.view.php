@@ -45,12 +45,15 @@ $livreManager=new LivreManager();
 		<div class="row">
 			<div class="col-md-12">
 				<div class="panel panel-info panel-shadow">
+					<BR>
 					<div class="panel-heading">
-						<h3>
+						<h3 class="text-center">
+						BIENVENUE DANS TON PANIER, <?= $_SESSION['profil']['login'] ?>
 							<!-- <img class="img-circle img-thumbnail" src="<?= URL; ?>public/Assets/images/profil/<?= $_SESSION['profil']['image'] ?>" width="100px" alt="photo de profil"><br>
 							<?= $_SESSION['profil']['login'] ?> -->
 						</h3>
 					</div>
+					<BR>
 					<h1 class="rounded border border-dark p-2 m-2 text-center text-white bg-success">LE PANIER</h1>
 					<table class="table text-center">
 						<tr class="table-dark">

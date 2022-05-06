@@ -9,7 +9,7 @@
     <div>
         <div>
             <img src="<?= URL; ?>public/Assets/images/<?= $utilisateur['image'] ?>" width="100px" alt="photo de profil" />
-        </div>
+        </div><br>
         <form method="POST" action="<?= URL ?>compte/validation_modificationImage" enctype="multipart/form-data">
             <label for="image">Changer l'image du profil :</label>
             <input type="file" class="form-control-file" id="image" name="image" onchange="submit();" />

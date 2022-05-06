@@ -1,5 +1,5 @@
 
-Total Hits:
+
 <?
 
 

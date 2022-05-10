@@ -297,7 +297,7 @@ try {
                         break;
 
                     case "validation_modificationMail":
-                        $utilisateurController->validation_modificationMail(Securite::secureHTML($_POST['email']));
+                        $utilisateurController->validation_modificationMail(Securite::secureHTML($_POST['email']),$url[2]);
                         break;
 
                     case "modificationPassword":

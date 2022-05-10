@@ -94,14 +94,18 @@ class UtilisateurController extends MainController
         }
     }
     // VALIDATION DE LA MODIFICATION DU MAIL 
-    public function validation_modificationMail($email)
+    public function validation_modificationMail($email,$login)
     {
-        if ($this->utilisateurManager->bdModificationMailUser($_SESSION['profil']['login'], $email)) {
+        if ($this->utilisateurManager->bdModificationMailUser($login, $email)) {
             Toolbox::ajouterMessageAlerte("La modification est effectuée", Toolbox::COULEUR_VERTE);
         } else {
             Toolbox::ajouterMessageAlerte("Aucune modification effectuée", Toolbox::COULEUR_ROUGE);
         }
-        header("Location: " . URL . "compte/profil");
+        if (Securite::estAdministrateur()) {
+            header("Location:".URL."administration/showProfilUser/".$login);
+        } else {
+            header("Location: " . URL . "compte/profil");
+        }
     }
 
     // AFFICHAGE DU PROFIL DE L'UTILISATEUR 

@@ -43,9 +43,9 @@ class AdministrateurController extends MainController
         $this-> genererPageDashboard($data_page);
     }
 
-    public function validation_modificationRole($login, $role, $est_valide)
+    public function validation_modificationRole($login, $role)
     {
-        if ($this->administrateurManager->bdModificationRoleUser($login, $role, $est_valide)) {
+        if ($this->administrateurManager->bdModificationRoleUser($login, $role)) {
             Toolbox::ajouterMessageAlerte("La modification a été prise en compte", Toolbox::COULEUR_VERTE);
         } else {
             Toolbox::ajouterMessageAlerte("La modification n'a pas été prise en compte", Toolbox::COULEUR_ROUGE);

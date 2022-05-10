@@ -45,7 +45,7 @@
     <div>
         <a href="<?= URL ?>compte/modificationPostal/<?= $utilisateur['login'] ?>" class="btn btn-warning">Changer le code postal</a>
         <a href="<?= URL ?>compte/modificationPassword/<?= $utilisateur['login'] ?>" class="btn btn-warning">Changer le mot de passe</a>
-        <a href="<?= URL ?>compte/ validation_suppressionCompte/<?= $utilisateur['login'] ?>" class="btn btn-danger">Supprimer son compte</a>
+        <a href="<?= URL ?>compte/validation_suppressionCompte/<?= $utilisateur['login'] ?>" class="btn btn-danger">Supprimer son compte</a>
     </div>
 </div>
 

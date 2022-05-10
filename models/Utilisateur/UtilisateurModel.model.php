@@ -43,13 +43,13 @@ class UtilisateurManager extends MainManager
 
     public function userBloque($login)
     {
-        $req = "SELECT est_valide FROM utilisateur WHERE login= :login";
+        $req = "SELECT role FROM utilisateur WHERE login= :login";
         $stmt = $this->getBdd()->prepare($req);
         $stmt->bindValue(":login", $login, PDO::PARAM_STR);
         $stmt->execute();
         $resultat = $stmt->fetch(PDO::FETCH_ASSOC);
         $stmt->closeCursor();
-        return ((int)$resultat['est_valide'] === 0) ? true : false;
+        return $resultat['role'] === 'utilisateur_Indesirable' ? true : false;
     }
 
 
@@ -102,9 +102,7 @@ class UtilisateurManager extends MainManager
     }
 
 
-    public function verifLoginDisponible($login)
-    {
-
+    public function verifLoginDisponible($login){
         $req = "SELECT * FROM utilisateur WHERE login=:login";
         $stmt = $this->getBdd()->prepare($req);
         $stmt->bindValue(":login", $login, PDO::PARAM_STR);

@@ -18,27 +18,27 @@ class UtilisateurController extends MainController
     public function validation_login($login, $password)
     {
         if ($this->utilisateurManager->isCombinaisonValide($login, $password)) {
-            if ($this->utilisateurManager->estCompteActive($login)) {
-                Toolbox::ajouterMessageAlerte("Bon retour sur le site " . $login . " !", Toolbox::COULEUR_VERTE);
-                $_SESSION['profil'] = ["login" => $login];
-                add_connection();
-                header("Location: " . URL . "compte/profil");
-               
-               
-            } else {
-                $msg = "Le compte " . $login . " n'a pas été activé par mail !!";
-                $msg .= "<a href='renvoyerMailValidaton/" . $login . "'>Renvoyez le mail de validation</a>";
-                Toolbox::ajouterMessageAlerte($msg, Toolbox::COULEUR_ROUGE);
+            if  ($this->utilisateurManager->userBloque($login)) {
+                Toolbox::ajouterMessageAlerte("Vous êtes un membre indésirable !! fouteur de merde", Toolbox::COULEUR_ROUGE);
                 header("Location: " . URL . "login");
+            }else {
+                if ($this->utilisateurManager->estCompteActive($login)) {
+                    Toolbox::ajouterMessageAlerte("Bon retour sur le site " . $login . " !", Toolbox::COULEUR_VERTE);
+                    $_SESSION['profil'] = ["login" => $login];
+                    add_connection();
+                    header("Location: " . URL . "compte/profil");
+                } else {
+                    $msg = "Le compte " . $login . " n'a pas été activé par mail !!";
+                    $msg .= "<a href='renvoyerMailValidation/" . $login . "'>Renvoyez le mail de validation</a>";
+                    Toolbox::ajouterMessageAlerte($msg, Toolbox::COULEUR_ROUGE);
+                    header("Location: " . URL . "login");
+                }
             }
         } else {
             Toolbox::ajouterMessageAlerte("Combinaison Login / Mot de passe non valide", Toolbox::COULEUR_ROUGE);
             header("Location: " . URL . "login");
         }
-        if  ($this->utilisateurManager->userBloque($login)) {
-            Toolbox::ajouterMessageAlerte("Vous êtes un membre indésirable !! fouteur de merde", Toolbox::COULEUR_ROUGE);
-            header("Location: " . URL . "login");
-        }
+        
     }
     // VALIDATION DE L'INSCRIPTION 
     public function validation_inscription($login, $password, $email, $nom, $prenom, $adresse, $code_postal, $date_de_naissance)
@@ -285,26 +285,38 @@ class UtilisateurController extends MainController
             } else {
 
                 toolbox::ajouterMessageAlerte("La modification du code postal n'a pas été effectuée !!", Toolbox::COULEUR_ROUGE);
-                header("Location: " . URL . "compte/profil");
+                if (Securite::estAdministrateur()) {
+                    header("Location:".URL."administration/showProfilUser/".$login);
+                } else {
+                    header("Location: " . URL . "compte/profil");
+                }
             }
         } else {
             toolbox::ajouterMessageAlerte("L'ancien code postal ne correspond pas à celui indiqué dans le formulaire !!", Toolbox::COULEUR_ROUGE);
-            header("Location: " . URL . "compte/profil");
+            if (Securite::estAdministrateur()) {
+                header("Location:".URL."administration/showProfilUser/".$login);
+            } else {
+                header("Location: " . URL . "compte/profil");
+            }
         }
     }
 
     // SUPPRESSION DU COMPTE DE L'UTILISATEUR
-    public function validation_suppressionCompte()
+    public function validation_suppressionCompte($login)
     {
 
-        $this->dossierSuprresionImageUtilisateur($_SESSION['profil']['login']);
-        rmdir("public/Assets/images/profil/" . $_SESSION['profil']['login']);
-        if ($this->utilisateurManager->validation_suppressionCompteDB($_SESSION['profil']['login'])) {
+        $this->dossierSuprresionImageUtilisateur($login);
+        rmdir("public/Assets/images/profil/" . $login);
+        if ($this->utilisateurManager->validation_suppressionCompteDB($login)) {
             Toolbox::ajouterMessageAlerte("La suppression a été effectuée avec succes", Toolbox::COULEUR_VERTE);
             $this->deconnexion();
         } else {
             Toolbox::ajouterMessageAlerte("La suppression n'a pas aboutie,contactez l'administrateur", Toolbox::COULEUR_ROUGE);
-            header("Location: " . URL . "compte/profil");
+            if (Securite::estAdministrateur()) {
+                header("Location:".URL."administration/showProfilUser/".$login);
+            } else {
+                header("Location: " . URL . "compte/profil");
+            }
         }
     }
 

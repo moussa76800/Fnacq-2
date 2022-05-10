@@ -326,7 +326,7 @@ try {
                         break;
 
                     case "validation_suppressionCompte":
-                        $utilisateurController->validation_suppressionCompte();
+                        $utilisateurController->validation_suppressionCompte($url[2]);
                         break;
 
                     default:
@@ -351,7 +351,7 @@ try {
                         $administrateurController->droits();
                         break;
                     case "validation_modificationRole":
-                        $administrateurController->validation_modificationRole($_POST['login'], $_POST['role'], $_POST['est_valide']);
+                        $administrateurController->validation_modificationRole($_POST['login'], $_POST['role']);
                         break;
                     case "showProfilUser":
                         $utilisateurController->profil($url[2]);

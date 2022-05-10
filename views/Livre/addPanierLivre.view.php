@@ -1,10 +1,10 @@
 
 <?php require_once ("./models/Utilisateur/UtilisateurModel.model.php");
-
+if(Securite::estUtilisateur()) { 
 $utilisateurManager= new UtilisateurManager();
 
 $profil=$utilisateurManager->getImageUtilisateur($_SESSION['profil']['login']);
-
+}
 ?>
 
 <style>
@@ -44,18 +44,13 @@ $profil=$utilisateurManager->getImageUtilisateur($_SESSION['profil']['login']);
 		<div class="row">
 			<div class="col-md-12">
 				<div class="panel panel-info panel-shadow">
+				<?php if(Securite::estUtilisateur()){ ?>
 					<div class="panel-heading">
-						<?php
-							if (Securite::estConnecte()) { 
-								
-								?>
-								<h3>
-									<img class="img-circle img-thumbnail" src="<?= URL; ?>public/Assets/images/<?= $profil ?>", width="100px" alt="photo de profil"><br>
-								
-									
-									
-								</h3>                 
-							<?php } ?>
+						<h3>
+						<img class="img-circle img-thumbnail" src="<?= URL; ?>public/Assets/images/<?= $profil ?>", width="100px" alt="photo de profil"><br>
+						</h3>
+					</div>
+				<?php  }  ?>
 							<br>
 					</div>
 					<div class="panel-body">
@@ -106,6 +101,7 @@ $profil=$utilisateurManager->getImageUtilisateur($_SESSION['profil']['login']);
 						</div>
 					</div>
 				</div>
+		</div>
 <br>
 				<a href="<?= URL ?>livres" class="btn btn-outline-success"><span class="glyphicon glyphicon-arrow-left"></span>Continue Shopping</a>
 				<a href="<?= URL ?>panier" class="btn btn-outline-success pull-right ">Voir le panier</a>

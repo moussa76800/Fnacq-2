@@ -186,23 +186,43 @@ class UtilisateurController extends MainController
         $this->genererPage($data_page);
     }
 
-    public function modifPostal()
+    public function modifPostal($login)
     {
-        $data_page = [
-            "page_description" => "Page de modification du code postal",
-            "page_title" => "Page de modification  du code postal",
-            "page_javascript" => ["modificationPostal.js"],
-            "view" => "views/Utilisateur/modificationPostal.view.php",
-            "template" => "views/common/template.php"
-        ];
+        if (!isset($login)) {
+            $datas = $this->utilisateurManager->getUserInformation($_SESSION['profil']['login']);
+            $_SESSION['profil']['role'] = $datas['role'];
+        } else {
+            $datas = $this->utilisateurManager->getUserInformation($login);
+        }
+
+        if ($_SESSION['profil']['role'] == 'administrateur') {
+            $data_page = [
+                "page_description" => "Page de modification du code postal",
+                "page_title" => "Page de modification  du code postal",
+                "utilisateur" => $datas,
+                "page_javascript" => ["modificationPostal.js"],
+                "view" => "views/Utilisateur/modificationPostal.view.php",
+                "template" => "views/common.dashboard/templateDash.php"
+            ];
+        } else {
+            $data_page = [
+                "page_description" => "Page de modification du code postal",
+                "page_title" => "Page de modification  du code postal",
+                "utilisateur" => $datas,
+                "page_javascript" => ["modificationPostal.js"],
+                "view" => "views/Utilisateur/modificationPostal.view.php",
+                "template" => "views/common/template.php"
+            ];
+        }
         $this->genererPage($data_page);
+
     }
 
-    public function validation_modificationPostal($oldPostal, $newPostal)
+    public function validation_modificationPostal($oldPostal, $newPostal, $login)
     {
-
-        if ($this->utilisateurManager->isCombinaisonPostalValide($_SESSION['profil']['login'], $oldPostal)) {
-            if ($this->utilisateurManager->bdmodifPostal($_SESSION['profil']['login'], $newPostal)) {
+        
+        if ($this->utilisateurManager->isCombinaisonPostalValide($login, $oldPostal)) {
+            if ($this->utilisateurManager->bdmodifPostal($login, $newPostal)) {
                 toolbox::ajouterMessageAlerte("La modification du code postal à été effectuée avec succes !!", Toolbox::COULEUR_VERTE);
                 header("Location: " . URL . "compte/profil");
             } else {

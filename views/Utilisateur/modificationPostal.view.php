@@ -1,7 +1,6 @@
-<h1 class="rounded border border-dark p-2 m-2 text-center text-white bg-success">Modification du Code Postal - <?= $_SESSION['profil']['login']?></h1>
+<h1 class="rounded border border-dark p-2 m-2 text-center text-white bg-success">Modification du Code Postal - <?= $utilisateur['login'] ?></h1>
 
-
-<form method="POST" action="<?=URL ?>compte/validation_modificationCodePostal">
+<form method="POST" action="<?=URL ?>compte/validation_modificationCodePostal/<?= $utilisateur['login'] ?>">
 
     <div class="mb-3">
             <label for="oldPostal" class="form-label"> OLD POSTAL</label>

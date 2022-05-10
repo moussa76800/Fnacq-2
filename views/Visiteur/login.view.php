@@ -37,7 +37,7 @@ else {
             <input type="password" class="form-control" id="password" name="password" required >
         </div>
 
-        
-        <button type="reset" class="btn btn-primary">REINITIALISER LE FORMULAIRE</button>
         <button type="submit" class="btn btn-primary">CONNEXION</button>
+
+        <a class="btn btn-primary" href="<?= URL ?>inscription">INSCRIPTION</a>
 </form>

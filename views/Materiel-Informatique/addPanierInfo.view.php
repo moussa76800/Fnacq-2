@@ -43,11 +43,13 @@ $profil=$utilisateurManager->getImageUtilisateur($_SESSION['profil']['login']);
 		<div class="row">
 			<div class="col-md-12">
 				<div class="panel panel-info panel-shadow">
+				<?php if(Securite::estUtilisateur()){ ?>
 					<div class="panel-heading">
 						<h3>
 						<img class="img-circle img-thumbnail" src="<?= URL; ?>public/Assets/images/<?= $profil ?>", width="100px" alt="photo de profil"><br>
 						</h3>
 					</div>
+				<?php  }  ?>
 					<div class="panel-body">
 						<div class="table-responsive">
 							<table class="table">

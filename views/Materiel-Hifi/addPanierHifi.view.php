@@ -41,17 +41,17 @@ $profil=$utilisateurManager->getImageUtilisateur($_SESSION['profil']['login']);
 				</ol>
 			</div>
 		</div>
-		<?php if(Securite::estUtilisateur()){ 
-		?>
+		
 		<div class="row">
 			<div class="col-md-12">
 				<div class="panel panel-info panel-shadow">
-
+				<?php if(Securite::estUtilisateur()){ ?>
 					<div class="panel-heading">
 						<h3>
 						<img class="img-circle img-thumbnail" src="<?= URL; ?>public/Assets/images/<?= $profil ?>", width="100px" alt="photo de profil"><br>
 						</h3>
 					</div>
+				<?php  }  ?>
 					<div class="panel-body">
 						<div class="table-responsive">
 							<table class="table">
@@ -109,70 +109,7 @@ $profil=$utilisateurManager->getImageUtilisateur($_SESSION['profil']['login']);
 				</form>
 
 			</div>
-			<?php    } else { ?>
-				<div class="row">
-			<div class="col-md-12">
-				<div class="panel panel-info panel-shadow">
-
-					
-					<div class="panel-body">
-						<div class="table-responsive">
-							<table class="table">
-								<thead>
-									<tr>
-										<th>Product</th>
-										<th>Description</th>
-										<th>Qty</th>
-										<th>Price</th>
-										<th colspan="2">Total</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td><img src="<?= URL ?>public/Assets/images/materielshifi/<?= $hifie->getImage(); ?>" class="img-cart"></td>
-										<td><strong>Product </strong>
-											<p><a href="<?= URL ?>materielsHifi/display/<?= $hifie->getId(); ?>"><?= $hifie->getTitle(); ?></a></p>
-										</td>
-										<td>
-											<form method="POST" class="form-inline">
-												<input class="form-control" name="quantity" type="int" value="1">
-												<input type="hidden" name="id" value="<?= $hifie->getId(); ?>">
-												<input type="hidden" name="category" value="hifi">
-												<input type="hidden" name="title" value="<?= $hifie->getTitle(); ?>">											
-										</td>
-										<td><?= number_format($hifie->getPrice(), 2, ',', ' '); ?> Euros</td>
-										<td><?= $hifie->getPrice(); ?> Euros</td>
-										<td><button type="submit" class="btn btn-outline-primary" name='addPanier'>Ajouter au panier</button></td>
-									</tr>
-
-									<tr>
-										<td colspan="6">&nbsp;</td>
-									</tr>
-									<!-- <tr>
-										<td colspan="4" class="text-right">Total Product</td>
-										<td><?= number_format($hifie->getPrice(), 2, ',', ' '); ?> Euros</td>
-									</tr>
-
-									<tr>
-										<td colspan="4" class="text-right"><strong>Total</strong></td>
-										<td> Euros</td>
-									</tr> -->
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</div>
-<br>
-				<a href="<?= URL ?>materielsHifi" class="btn btn-outline-success"><span class="glyphicon glyphicon-arrow-left"></span>Continue Shopping</a>
-				<a href="<?= URL ?>panier" class="btn btn-outline-success pull-right ">Voir le panier</a>
-				<!-- <button type="submit" class="btn btn-primary" name='addPanier'>Ajouter panier</button> -->
-				
-				
-
-				</form>
-
-			</div>
-			<?php   } ?>
+			
 		</div>
 	</div>
 </div>

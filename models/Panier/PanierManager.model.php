@@ -23,6 +23,8 @@ class PanierManager extends  MainManager
 
         if (isset($_SESSION['profil'])) {
             $this->UserPanier = $_SESSION['profil']['login'];
+        }else{
+            $this->UserPanier = 'visiteur';
         }
         $this->panier = array();
     }

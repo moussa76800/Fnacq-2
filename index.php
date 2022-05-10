@@ -149,9 +149,15 @@ try {
                 Toolbox::ajouterMessageAlerte("L'article a bien été supprimé !!", Toolbox::COULEUR_VERTE);
                 header('Location: ' . URL . "panier");
             } else if ($url[1] === "achat") {
-                $panierController->achatPanier();
-                Toolbox::ajouterMessageAlerte("Merci pour vos achat à bientôt !!", Toolbox::COULEUR_VERTE);
-                header('Location: ' . URL . "panier");
+                if (!Securite::estConnecte()) {
+                    Toolbox::ajouterMessageAlerte("Veuillez vous s'authentifier ou vous inscrire  !!", Toolbox::COULEUR_ROUGE);
+                    header('Location: ' . URL . "login");
+                } else {
+                    $panierController->achatPanier();
+                    Toolbox::ajouterMessageAlerte("Merci pour vos achat à bientôt !!", Toolbox::COULEUR_VERTE);
+                    header('Location: ' . URL . "panier");
+                }
+                
             }
 
             break;
@@ -279,14 +285,14 @@ try {
                         break;
 
                     case "modificationPostal":
-                        $utilisateurController->modifPostal();
+                        $utilisateurController->modifPostal($url[2]);
 
                         break;
                     case "validation_modificationCodePostal":
                         if (!empty($_POST['oldPostal']) && !empty($_POST['newPostal'])) {
                             $oldPostal = Securite::secureHTML($_POST['oldPostal']);
                             $newPostal = Securite::secureHTML($_POST['newPostal']);
-                            $utilisateurController->validation_modificationPostal($oldPostal, $newPostal);
+                            $utilisateurController->validation_modificationPostal($oldPostal, $newPostal,$url[2]);
                         }
                         break;
 

@@ -45,6 +45,7 @@ $livreManager=new LivreManager();
 		<div class="row">
 			<div class="col-md-12">
 				<div class="panel panel-info panel-shadow">
+				<?php if(Securite::estUtilisateur()){ ?>
 					<BR>
 					<div class="panel-heading">
 						<h3 class="text-center">
@@ -53,6 +54,7 @@ $livreManager=new LivreManager();
 							<?= $_SESSION['profil']['login'] ?> -->
 						</h3>
 					</div>
+					<?php  }  ?>
 					<BR>
 					<h1 class="rounded border border-dark p-2 m-2 text-center text-white bg-success">LE PANIER</h1>
 					<table class="table text-center">

@@ -23,7 +23,7 @@
                             <input type="hidden" name="login" value="<?= $utilisateur['login'] ?>" />
                             <select class="form-select" name="role" onchange="confirm('confirmez vous la modification ?') ? submit() : document.location.reload()">
                                 <option value="utilisateur" <?= $utilisateur['role'] === "utilisateur"  ? "selected" : "" ?>>User</option>
-                                <option value="utilisateur_Indesirable" <?= $utilisateur['role'] === "utilisateur_Indesirable" && $utilisateur['est_valide'] === "0"  ? "selected" : "" ?>> Unwanted user</option>
+                                <option value="utilisateur_Indesirable" <?= $utilisateur['role'] === "utilisateur_Indesirable" ? "selected" : "" ?>> Unwanted user</option>
                                 <option value="administrateur" <?= $utilisateur['role'] === "administrateur" ? "selected" : "" ?>>Administrator</option>
                             </select>
                         </form>

@@ -42,7 +42,7 @@ class Securite
 
     public static function utilisateurIndesirable()
     {
-        return ($_SESSION['profil']['role']==="utilisateur_Indesirable" &&  $_SESSION['profil']['est_valide']==="0");
+        return ($_SESSION['profil']['role']==="utilisateur_Indesirable");
         
     }
 

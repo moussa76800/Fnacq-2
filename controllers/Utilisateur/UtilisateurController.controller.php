@@ -224,7 +224,11 @@ class UtilisateurController extends MainController
         if ($this->utilisateurManager->isCombinaisonPostalValide($login, $oldPostal)) {
             if ($this->utilisateurManager->bdmodifPostal($login, $newPostal)) {
                 toolbox::ajouterMessageAlerte("La modification du code postal à été effectuée avec succes !!", Toolbox::COULEUR_VERTE);
-                header("Location: " . URL . "compte/profil");
+                if (Securite::estAdministrateur()) {
+                    header("Location:".URL."administration/showProfilUser/".$login);
+                } else {
+                    header("Location: " . URL . "compte/profil");
+                }
             } else {
 
                 toolbox::ajouterMessageAlerte("La modification du code postal n'a pas été effectuée !!", Toolbox::COULEUR_ROUGE);

@@ -1,7 +1,7 @@
-<h1 class="rounded border border-dark p-2 m-2 text-center text-white bg-success">Modification du mot de passe - <?= $_SESSION['profil']['login']?></h1>
+<h1 class="rounded border border-dark p-2 m-2 text-center text-white bg-success">Modification du mot de passe - <?= $utilisateur['login'] ?></h1>
 
 
-<form method="POST" action="<?=URL ?>compte/validation_modificationPassword">
+<form method="POST" action="<?=URL ?>compte/validation_modificationPassword/<?= $utilisateur['login'] ?>">
 
     <div class="mb-3">
             <label for="oldPassword" class="form-label"> OLD PASSWORD</label>

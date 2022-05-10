@@ -1,6 +1,5 @@
  <?php
 
-
 require_once "./controllers/MainController.controller.php";
 require_once "./models/Utilisateur/UtilisateurModel.model.php";
 require_once "./functions/compteur.php";
@@ -9,17 +8,13 @@ class UtilisateurController extends MainController
 {
     private $utilisateurManager;
 
-
-
     public function __construct()
     {
 
         $this->utilisateurManager = new UtilisateurManager();
     }
 
-
-
-
+    // VALIDATION LOGIN
     public function validation_login($login, $password)
     {
         if ($this->utilisateurManager->isCombinaisonValide($login, $password)) {
@@ -45,7 +40,7 @@ class UtilisateurController extends MainController
             header("Location: " . URL . "login");
         }
     }
-
+    // VALIDATION DE L'INSCRIPTION 
     public function validation_inscription($login, $password, $email, $nom, $prenom, $adresse, $code_postal, $date_de_naissance)
     {
         if ($this->utilisateurManager->verifLoginDisponible($login)) {
@@ -67,6 +62,7 @@ class UtilisateurController extends MainController
         }
     }
 
+    // ENVOIE DU MAIL DE VALIDATION 
     private function sendMailValidation($login, $mail, $clef)
     {
         $urlVerification = URL . "validationMail/" . $login . "/" . $clef;
@@ -75,7 +71,7 @@ class UtilisateurController extends MainController
         Toolbox::sendMail($mail, $sujet, $message);
     }
 
-
+    // RENVOYER MAIL DE VALIDATION 
     public function renvoyerMailValidation($login)
     {
         $utilisateur = $this->utilisateurManager->getUserInformation($login);
@@ -83,6 +79,7 @@ class UtilisateurController extends MainController
         header("Location: " . URL . "login");
     }
 
+    // VALIDATION DU MAIL 
     public function validation_mailCompte($login, $clef)
     {
         if ($this->utilisateurManager->bdValidationMailCompte($login, $clef)) {
@@ -96,7 +93,7 @@ class UtilisateurController extends MainController
             header('Location: ' . URL . 'creerCompte');
         }
     }
-
+    // VALIDATION DE LA MODIFICATION DU MAIL 
     public function validation_modificationMail($email)
     {
         if ($this->utilisateurManager->bdModificationMailUser($_SESSION['profil']['login'], $email)) {
@@ -107,7 +104,7 @@ class UtilisateurController extends MainController
         header("Location: " . URL . "compte/profil");
     }
 
-
+    // AFFICHAGE DU PROFIL DE L'UTILISATEUR 
     public function profil($login)
     {
         if (!isset($login)) {
@@ -138,6 +135,8 @@ class UtilisateurController extends MainController
         }
         $this->genererPage($data_page);
     }
+
+    // VALIDATION MODIFICATION DE L'IMAGE
     public function validation_modificationImage($file)
     {
         try {
@@ -158,6 +157,8 @@ class UtilisateurController extends MainController
 
         header("Location: " . URL . "compte/profil");
     }
+
+    // SUPPRESION DE L'IMAGE DANS LE DOSSIER
     private function dossierSuprresionImageUtilisateur($login)
     {
         $ancienneImage = $this->utilisateurManager->getImageUtilisateur($_SESSION['profil']['login']);
@@ -166,6 +167,7 @@ class UtilisateurController extends MainController
         }
     }
 
+    // DECONNEXION DE L'UTILISATEUR
     public function deconnexion()
     {
         Toolbox::ajouterMessageAlerte("La déconnexion a été établie avec succès", Toolbox::COULEUR_VERTE);
@@ -173,19 +175,65 @@ class UtilisateurController extends MainController
         header('Location: ' . URL . "accueil");
     }
 
-
-    public function modifPassword()
+    // MODIFICATION DU MOT DE PASSE 
+    public function modifPassword($login)
     {
-        $data_page = [
-            "page_description" => "Page de modification du mot de passe",
-            "page_title" => "Page de modification du mot de passe",
-            "page_javascript" => ["modificationPassword.js"],
-            "view" => "views/Utilisateur/modificationPassword.view.php",
-            "template" => "views/common/template.php"
-        ];
+        if (!isset($login)) {
+            $datas = $this->utilisateurManager->getUserInformation($_SESSION['profil']['login']);
+            $_SESSION['profil']['role'] = $datas['role'];
+        } else {
+            $datas = $this->utilisateurManager->getUserInformation($login);
+        }
+
+        if ($_SESSION['profil']['role'] == 'administrateur') {
+            $data_page = [
+                "page_description" => "Page de modification du mot de passe",
+                "page_title" => "Page de modification du mot de passe",
+                "utilisateur" => $datas,
+                "page_javascript" => ["modificationPassword.js"],
+                "view" => "views/Utilisateur/modificationPassword.view.php",
+                "template" => "views/common.dashboard/templateDash.php"
+            ];
+        } else {
+            $data_page = [
+                "page_description" => "Page de modification du mot de passe",
+                "page_title" => "Page de modification du mot de passe",
+                "utilisateur" => $datas,
+                "page_javascript" => ["modificationPassword.js"],
+                "view" => "views/Utilisateur/modificationPassword.view.php",
+                "template" => "views/common/template.php"
+            ];
+        }
         $this->genererPage($data_page);
     }
+    // VALIDATION DE LA MODIFICATION DU MOT DE PASSE 
+    public function validation_modificationPassword($oldPassword, $newPassword, $confirmNewPassword,$login)
+    {
+        if ($newPassword === $confirmNewPassword) {
+            if ($this->utilisateurManager->isCombinaisonValide($login, $oldPassword)) {
+                $passwordCrypte = password_hash($newPassword, PASSWORD_DEFAULT);
+                if ($this->utilisateurManager->modificationPasswordDB($login, $passwordCrypte)) {
+                    Toolbox::ajouterMessageAlerte("La modification du mot de passe à été effectuée avec succes !!", Toolbox::COULEUR_VERTE);
+                    if (Securite::estAdministrateur()) {
+                        header("Location:".URL."administration/showProfilUser/".$login);
+                    } else {
+                        header("Location: " . URL . "compte/profil");
+                    }
+                } else {
+                    Toolbox::ajouterMessageAlerte("La modification a échouée!!!", Toolbox::COULEUR_ROUGE);
+                    header("Location: " . URL . "compte/modificationPassword/".$login);
+                }
+            } else {
+                Toolbox::ajouterMessageAlerte("La combinaison login et du mot de passe d'origine ne correspondent pas  !!!", Toolbox::COULEUR_ROUGE);
+                header("Location: " . URL . "compte/modificationPassword/".$login);
+            }
+        } else {
+            Toolbox::ajouterMessageAlerte("Les mots de passes ne correspondent pas !!!", Toolbox::COULEUR_ROUGE);
+            header("Location: " . URL . "compte/modificationPassword/".$login);
+        }
+    }
 
+    // MODIFICATION DU CODE POSTAL 
     public function modifPostal($login)
     {
         if (!isset($login)) {
@@ -218,6 +266,7 @@ class UtilisateurController extends MainController
 
     }
 
+    // VALIDATION MODIFICATION DU CODE POSTAL 
     public function validation_modificationPostal($oldPostal, $newPostal, $login)
     {
         
@@ -240,31 +289,7 @@ class UtilisateurController extends MainController
         }
     }
 
-
-
-
-    public function validation_modificationPassword($oldPassword, $newPassword, $confirmNewPassword)
-    {
-        if ($newPassword === $confirmNewPassword) {
-            if ($this->utilisateurManager->isCombinaisonValide($_SESSION['profil']['login'], $oldPassword)) {
-                $passwordCrypte = password_hash($newPassword, PASSWORD_DEFAULT);
-                if ($this->utilisateurManager->modificationPasswordDB($_SESSION['profil']['login'], $passwordCrypte)) {
-                    Toolbox::ajouterMessageAlerte("La modification du mot de passe à été effectuée avec succes !!", Toolbox::COULEUR_VERTE);
-                    header("Location: " . URL . "compte/profil");
-                } else {
-                    Toolbox::ajouterMessageAlerte("La modification a échouée!!!", Toolbox::COULEUR_ROUGE);
-                    header("Location: " . URL . "compte/modificationPassword");
-                }
-            } else {
-                Toolbox::ajouterMessageAlerte("La combinaison login et du mot de passe d'origine ne correspondent pas  !!!", Toolbox::COULEUR_ROUGE);
-                header("Location: " . URL . "compte/modificationPassword");
-            }
-        } else {
-            Toolbox::ajouterMessageAlerte("Les mots de passes ne correspondent pas !!!", Toolbox::COULEUR_ROUGE);
-            header("Location: " . URL . "compte/modificationPassword");
-        }
-    }
-
+    // SUPPRESSION DU COMPTE DE L'UTILISATEUR
     public function validation_suppressionCompte()
     {
 

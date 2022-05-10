@@ -301,7 +301,7 @@ try {
                         break;
 
                     case "modificationPassword":
-                        $utilisateurController->modifPassword();
+                        $utilisateurController->modifPassword($url[2]);
                         break;
 
                     case "validation_modificationPassword":
@@ -309,7 +309,7 @@ try {
                             $oldPassword = Securite::secureHTML($_POST['oldPassword']);
                             $newPassword = Securite::secureHTML($_POST['newPassword']);
                             $confirmNewPassword = Securite::secureHTML($_POST['confirmNewPassword']);
-                            $utilisateurController->validation_modificationPassword($oldPassword, $newPassword, $confirmNewPassword);
+                            $utilisateurController->validation_modificationPassword($oldPassword, $newPassword, $confirmNewPassword,$url[2]);
                         } else {
                             Toolbox::ajouterMessageAlerte("vous n'avez pas renseigné toutes les informations necessaires pour la modification du mot de passe !!!", Toolbox::COULEUR_ROUGE);
                             header("Location: " . URL . "compte/modificationPassword");

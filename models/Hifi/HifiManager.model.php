@@ -53,7 +53,7 @@ class HifiManager extends MainManager{
             }
         }
     
-        public function ajoutLivreBd( $article, $marque, $price, $image)
+        public function ajoutHifiBd( $article, $marque, $price, $image)
         {
             $req = "INSERT INTO hifi (category,article,marque,price,image)
                     values (:category,:article, :marque, :price, :image)";
@@ -67,12 +67,12 @@ class HifiManager extends MainManager{
             $stmt->closeCursor();
     
             if ($resultat > 0) {
-                $hifi = new Hifi($this->getBdd()->lastInsertId(), $article, $marque, $price, $image);
+                $hifi = new Hifi($this->getBdd()->lastInsertId(), "hifi",$article, $marque, $price, $image);
                 $this->ajoutHifi($hifi);
             }
         }
     
-        public function  suppressionLivreBD($id)
+        public function  suppressionHifiBD($id)
         {
     
             $req = " Delete from hifi where id = :idhifi ";
@@ -82,12 +82,12 @@ class HifiManager extends MainManager{
             $stmt->closeCursor();
     
             if ($resultat > 0) {
-                $livre = $this->getHifiById($id);
+                $hifi = $this->getHifiById($id);
                 unset($hifi);
             }
         }
     
-        public function modificationLivreBD($id, $article, $marque, $price, $image)
+        public function modificationHifiBD($id, $article, $marque, $price, $image)
         {
             $req = 'update hifi
         SET article = :article, marque = :marque, price = :price, image = :image 

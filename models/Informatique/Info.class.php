@@ -1,5 +1,5 @@
 <?php
-class Hifi {
+class Info {
 
     private $id;
     private $title;
@@ -27,7 +27,7 @@ class Hifi {
     public function getCategory(){return $this->category;}
 
     public function getTitle() { return $this->title;}
-    public function setTitle($title) { $this->title=$title;}
+    public function setTtitle($title) { $this->title=$title;}
      
     public function getMarque() { return $this->marque;}
     public function setMarque($marque) { $this->marque=$marque;}

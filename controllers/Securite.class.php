@@ -20,6 +20,8 @@ class Securite
         }
     }
 
+
+
     public static function estUtilisateur()
     {
         if (isset($_SESSION['profil'])) {

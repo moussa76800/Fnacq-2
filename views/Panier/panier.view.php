@@ -1,10 +1,14 @@
 <?php 
 require_once("./models/Livre/Livre.class.php");
 require_once("./models/Hifi/Hifi.class.php");
+require_once("./models/Informatique/Info.class.php");
 require_once("./models/Livre/LivreManager.model.php");
 require_once("./models/Hifi/HifiManager.model.php");
+require_once("./models/Informatique/InformatiqueManager.model.php");
+
 
 $livreManager=new LivreManager();
+
 ?>
 
 <style>
@@ -41,12 +45,17 @@ $livreManager=new LivreManager();
 		<div class="row">
 			<div class="col-md-12">
 				<div class="panel panel-info panel-shadow">
+				<?php if(Securite::estUtilisateur()){ ?>
+					<BR>
 					<div class="panel-heading">
-						<h3>
+						<h3 class="text-center">
+						BIENVENUE DANS TON PANIER, <?= $_SESSION['profil']['login'] ?>
 							<!-- <img class="img-circle img-thumbnail" src="<?= URL; ?>public/Assets/images/profil/<?= $_SESSION['profil']['image'] ?>" width="100px" alt="photo de profil"><br>
 							<?= $_SESSION['profil']['login'] ?> -->
 						</h3>
 					</div>
+					<?php  }  ?>
+					<BR>
 					<h1 class="rounded border border-dark p-2 m-2 text-center text-white bg-success">LE PANIER</h1>
 					<table class="table text-center">
 						<tr class="table-dark">
@@ -68,11 +77,12 @@ $livreManager=new LivreManager();
 									<td class="align-middle"><?= intval($value['Valeur_Quantity']) * intval($value['Valeur_Price']); ?> Euros</td>
 									<td class="align-middle"><a class="btn btn-danger" href="<?= URL ?>panier/del/<?= $value['Valeur_Id']; ?>/<?= $value['Valeur_Category']; ?>"><img src="public/Assets/images/icons/trash.svg"></a></td>
 								</tr>
-							<?php }
+							<?php 
 								if (isset($value)) {
 									$total = $total + ($value['Valeur_Quantity']*$value['Valeur_Price']);
 								}
-							} ?>
+							}
+						} ?>
 							<tr>
 								<td colspan="4" class="text-right"><strong>Total</strong></td>
 								<td><?php echo $total." euros" ?></td>

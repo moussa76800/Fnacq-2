@@ -5,19 +5,26 @@ require_once  "./controllers/Livre/Livrecontroller.controller.php";
 require_once "./models/Livre/Livre.class.php";
 require_once  "./controllers/Hifi/Hificontroller.controller.php";
 require_once "./models/Hifi/Hifi.class.php";
+require_once  "./controllers/Informatique/Informatiquecontroller.controller.php";
+require_once "./models/Informatique/Info.class.php";
 
 class PanierManager extends  MainManager
 {
     private $livres;
     private $hifis;
+    private $infos;
     private $UserPanier;
 
     public function __construct()
     {
         $this->livres = new LivreController();
         $this->hifis = new HifiController();
+        $this->infos = new InformatiqueController();
+
         if (isset($_SESSION['profil'])) {
             $this->UserPanier = $_SESSION['profil']['login'];
+        }else{
+            $this->UserPanier = 'visiteur';
         }
         $this->panier = array();
     }
@@ -51,8 +58,11 @@ class PanierManager extends  MainManager
         } elseif ($category == 'hifi') {
             $article = $this->hifis->addPanierHifi($id);
             $route = "MaterielsHifi";
+        } elseif ($category == 'informatique') {
+            $article = $this->infos->addPanierInfo($id);
+            $route = "MaterielsInformatiques";
         }
-        
+
         if ($quantity > 10) {
             $quantity = 10;
         }

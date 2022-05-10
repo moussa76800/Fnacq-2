@@ -1,12 +1,11 @@
+
 <?php require_once ("./models/Utilisateur/UtilisateurModel.model.php");
 
 $utilisateurManager= new UtilisateurManager();
- if(Securite::estUtilisateur()){ 
-	
-$profil=$utilisateurManager->getImageUtilisateur($_SESSION['profil']['login']);
-   } 
-?>
 
+$profil=$utilisateurManager->getImageUtilisateur($_SESSION['profil']['login']);
+
+?>
 <style>
 	.img-cart {
 		display: block;
@@ -41,7 +40,6 @@ $profil=$utilisateurManager->getImageUtilisateur($_SESSION['profil']['login']);
 				</ol>
 			</div>
 		</div>
-		
 		<div class="row">
 			<div class="col-md-12">
 				<div class="panel panel-info panel-shadow">
@@ -66,19 +64,19 @@ $profil=$utilisateurManager->getImageUtilisateur($_SESSION['profil']['login']);
 								</thead>
 								<tbody>
 									<tr>
-										<td><img src="<?= URL ?>public/Assets/images/materielshifi/<?= $hifie->getImage(); ?>" class="img-cart"></td>
+										<td><img src="<?= URL ?>public/Assets/images/materielsInformatiques/<?= $infoe->getImage(); ?>" class="img-cart"></td>
 										<td><strong>Product </strong>
-											<p><a href="<?= URL ?>materielsHifi/display/<?= $hifie->getId(); ?>"><?= $hifie->getTitle(); ?></a></p>
+											<p><a href="<?= URL ?>materielsInformatiques/display/<?= $infoe->getId(); ?>"><?= $infoe->getTitle(); ?></a></p>
 										</td>
 										<td>
 											<form method="POST" class="form-inline">
 												<input class="form-control" name="quantity" type="int" value="1">
-												<input type="hidden" name="id" value="<?= $hifie->getId(); ?>">
-												<input type="hidden" name="category" value="hifi">
-												<input type="hidden" name="title" value="<?= $hifie->getTitle(); ?>">											
+												<input type="hidden" name="id" value="<?= $infoe->getId(); ?>">
+												<input type="hidden" name="category" value="informatique">
+												<input type="hidden" name="title" value="<?= $infoe->getTitle(); ?>">											
 										</td>
-										<td><?= number_format($hifie->getPrice(), 2, ',', ' '); ?> Euros</td>
-										<td><?= $hifie->getPrice(); ?> Euros</td>
+										<td><?= number_format($infoe->getPrice(), 2, ',', ' '); ?> Euros</td>
+										<td><?= $infoe->getPrice(); ?> Euros</td>
 										<td><button type="submit" class="btn btn-outline-primary" name='addPanier'>Ajouter au panier</button></td>
 									</tr>
 
@@ -87,7 +85,7 @@ $profil=$utilisateurManager->getImageUtilisateur($_SESSION['profil']['login']);
 									</tr>
 									<!-- <tr>
 										<td colspan="4" class="text-right">Total Product</td>
-										<td><?= number_format($hifie->getPrice(), 2, ',', ' '); ?> Euros</td>
+										<td><?= number_format($infoe->getPrice(), 2, ',', ' '); ?> Euros</td>
 									</tr>
 
 									<tr>
@@ -100,7 +98,7 @@ $profil=$utilisateurManager->getImageUtilisateur($_SESSION['profil']['login']);
 					</div>
 				</div>
 <br>
-				<a href="<?= URL ?>materielsHifi" class="btn btn-outline-success"><span class="glyphicon glyphicon-arrow-left"></span>Continue Shopping</a>
+				<a href="<?= URL ?>materielsInformatiques" class="btn btn-outline-success"><span class="glyphicon glyphicon-arrow-left"></span>Continue Shopping</a>
 				<a href="<?= URL ?>panier" class="btn btn-outline-success pull-right ">Voir le panier</a>
 				<!-- <button type="submit" class="btn btn-primary" name='addPanier'>Ajouter panier</button> -->
 				
@@ -109,7 +107,6 @@ $profil=$utilisateurManager->getImageUtilisateur($_SESSION['profil']['login']);
 				</form>
 
 			</div>
-			
 		</div>
 	</div>
 </div>

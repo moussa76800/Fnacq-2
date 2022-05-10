@@ -92,27 +92,29 @@
 
 <BR>
 <BR>
-
-<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+<DIV>
+<hr class="featurette-divider">
+<div id="carouselExampleControls" class="carousel slide " data-bs-ride="carousel">
   <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="public/Assets/images/livres/virus.png" class="d-block w-30" alt="..."><br>
+    <div class="carousel-item active ">
+      <img src="public/Assets/images/livres/virus.png" class="d-block w-10  " alt="..."><br>
       <h1><bold> Title : Le virus informatique d'Asie</bold> </h1>
       <h3>Author : Lee Chao</h3><br>
        <h4> Price : 35 Euros </h4>    
     </div>
-    <div class="carousel-item">
-      <img src="public/Assets/images/materielsHifi/casque.jpg" class="d-block w-30" alt="..."><br>
+    <div class="carousel-item ">
+      <img src="public/Assets/images/materielsHifi/casque.jpg" class="d-block w-20" alt="..."><br>
       <h1><bold> Article : Casque bluetooth </bold> </h1>
       <h3>Marque : Yamaha</h3><br>
       <h4> Price : 49 Euros </h4>    
     </div>
     <div class="carousel-item">
-      <img src="public/Assets/images/materielsInformatiques/pc.jpg" class="d-block w-30" alt="..."><br>
+      <img src="public/Assets/images/materielsInformatiques/pc.jpg" class="d-block w-20" alt="..."><br>
       <h1><bold> Article : PC</bold> </h1>
       <h3>Marque : Sony</h3><br>
       <h4> Price : 399 Euros </h4>  
     </div>
+    
   </div>
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -123,6 +125,7 @@
     <span class="visually-hidden">Next</span>
   </button>
 </div>
+</DIV>
 <br>
 <br>
 

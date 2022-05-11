@@ -89,6 +89,6 @@ $livreManager=new LivreManager();
 							</tr>
 						</table>
 				</div><br>
-				<a href="<?= URL ?>panier/achat/".$total class="btn btn-success pull-right ">Finaliser achat</a>
+				<a href="<?= URL ?>panier/achat/<?php echo $total; ?>" class="btn btn-success pull-right ">Finaliser achat</a>
 			</div>
 		</div>

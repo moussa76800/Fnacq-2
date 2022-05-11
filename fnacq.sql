@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Jeu 21 Avril 2022 à 12:56
+-- Généré le :  Mer 11 Mai 2022 à 20:15
 -- Version du serveur :  5.6.20
 -- Version de PHP :  5.5.15
 
@@ -53,6 +53,31 @@ INSERT INTO `comments` (`id`, `articleId`, `author`, `comment`, `created_at`) VA
 (31, 3, 'moussa', 'Je rejoins ce qu''&agrave; mentionner Marc &agrave; propos de ce langage de programmation.', '2022-01-15 09:49:31'),
 (32, 1, 'moussa', 'bbbbbb', '2022-01-24 13:42:49'),
 (33, 11, 'Chennou', 'J''ai eu la covid et franchement c''est flippant !!!', '2022-04-03 17:42:16');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `detail_order`
+--
+
+CREATE TABLE IF NOT EXISTS `detail_order` (
+  `id_article` int(11) NOT NULL,
+  `category` varchar(255) NOT NULL,
+  `order_id` int(11) NOT NULL,
+  `quantity_article` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Contenu de la table `detail_order`
+--
+
+INSERT INTO `detail_order` (`id_article`, `category`, `order_id`, `quantity_article`) VALUES
+(4, 'livre', 10, 3),
+(26, 'livre', 10, 1),
+(6, 'hifi', 10, 1),
+(3, 'informatique', 11, 1),
+(26, 'livre', 11, 4),
+(2, 'hifi', 11, 1);
 
 -- --------------------------------------------------------
 
@@ -142,24 +167,23 @@ INSERT INTO `livres` (`id`, `category`, `title`, `authors`, `numbersOfPages`, `p
 -- --------------------------------------------------------
 
 --
--- Structure de la table `panier`
+-- Structure de la table `order`
 --
 
-CREATE TABLE IF NOT EXISTS `panier` (
-`idpanier` int(55) NOT NULL,
-  `panier_login` varchar(255) CHARACTER SET utf8mb4 NOT NULL,
-  `panier_article` int(55) NOT NULL,
-  `quantity` int(255) NOT NULL,
-  `date_achat` date NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+CREATE TABLE IF NOT EXISTS `order` (
+`id_order` int(11) NOT NULL,
+  `date_order` date NOT NULL,
+  `login` varchar(50) NOT NULL,
+  `total_prix` int(11) NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
 
 --
--- Contenu de la table `panier`
+-- Contenu de la table `order`
 --
 
-INSERT INTO `panier` (`idpanier`, `panier_login`, `panier_article`, `quantity`, `date_achat`) VALUES
-(1, 'youssef', 1, 2, '2022-03-01'),
-(3, 'verbist', 2, 1, '2022-03-02');
+INSERT INTO `order` (`id_order`, `date_order`, `login`, `total_prix`) VALUES
+(10, '2022-05-11', 'youbrf', 339),
+(11, '2022-05-09', 'youbrf', 387);
 
 -- --------------------------------------------------------
 
@@ -307,7 +331,7 @@ INSERT INTO `tchat` (`id`, `user`, `message`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `utilisateur` (
-  `login` varchar(50) NOT NULL,
+  `login` varchar(50) CHARACTER SET utf8 NOT NULL,
   `password` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
   `role` varchar(50) NOT NULL,
@@ -318,17 +342,18 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
   `prenom` varchar(20) NOT NULL,
   `adresse` varchar(40) NOT NULL,
   `code_postal` int(11) NOT NULL,
-  `date_de_naissance` date NOT NULL
+  `date_de_naissance` date NOT NULL,
+  `date_creation` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `utilisateur`
 --
 
-INSERT INTO `utilisateur` (`login`, `password`, `email`, `role`, `image`, `est_valide`, `clef`, `nom`, `prenom`, `adresse`, `code_postal`, `date_de_naissance`) VALUES
-('admin', '$2y$10$AMKvJKteLcSSWkycDA.VIu2XJGLOb.X3/8veiXL/C/dmYp6MOE7CW', 'admin@gmail.com', 'administrateur', 'profil/homme.jpg', 1, 525, 'admin', 'admin', 'admin', 1111, '2023-05-16'),
-('moussa', '$2y$10$E9RzHK1/TxXDUx/fCMFfa.kgj2URXyeHQewSWSCOslEv1Tm8Xu/Wi', 'moussa@gmail.com', 'utilisateur', 'profil/homme.jpg', 1, 1149, 'moussa', 'moussa', 'moussa', 1546, '2023-05-20'),
-('youbrf', '$2y$10$Kevy.u0gaFxLgb94HJ1upuUf5M6j8PDFf1LnxVMrCTk4ou20lCFWG', 'youchawa@gmail.com', 'utilisateur', 'profil/youbrf/64447_windows-11-fond-ecran-wallpaper-2-scaled.jpg', 1, 7204, 'ch', 'you', 'famezjk', 4543, '2023-05-14');
+INSERT INTO `utilisateur` (`login`, `password`, `email`, `role`, `image`, `est_valide`, `clef`, `nom`, `prenom`, `adresse`, `code_postal`, `date_de_naissance`, `date_creation`) VALUES
+('admin', '$2y$10$AMKvJKteLcSSWkycDA.VIu2XJGLOb.X3/8veiXL/C/dmYp6MOE7CW', 'admin@gmail.com', 'administrateur', 'profil/homme.jpg', 1, 525, 'admin', 'admin', 'admin', 1111, '2023-05-16', '2021-11-01'),
+('moussa', '$2y$10$E9RzHK1/TxXDUx/fCMFfa.kgj2URXyeHQewSWSCOslEv1Tm8Xu/Wi', 'moussa@gmail.com', 'utilisateur', 'profil/homme.jpg', 1, 1149, 'moussa', 'moussa', 'moussa', 1546, '2023-05-20', '2022-01-12'),
+('youbrf', '$2y$10$Kevy.u0gaFxLgb94HJ1upuUf5M6j8PDFf1LnxVMrCTk4ou20lCFWG', 'youchawa@gmail.com', 'utilisateur', 'profil/youbrf/64447_windows-11-fond-ecran-wallpaper-2-scaled.jpg', 1, 7204, 'ch', 'you', 'famezjk', 4543, '2023-05-14', '2021-10-12');
 
 --
 -- Index pour les tables exportées
@@ -339,6 +364,12 @@ INSERT INTO `utilisateur` (`login`, `password`, `email`, `role`, `image`, `est_v
 --
 ALTER TABLE `comments`
  ADD PRIMARY KEY (`id`), ADD KEY `articleId` (`articleId`);
+
+--
+-- Index pour la table `detail_order`
+--
+ALTER TABLE `detail_order`
+ ADD KEY `detail cmd` (`order_id`);
 
 --
 -- Index pour la table `hifi`
@@ -359,10 +390,10 @@ ALTER TABLE `livres`
  ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `panier`
+-- Index pour la table `order`
 --
-ALTER TABLE `panier`
- ADD PRIMARY KEY (`idpanier`), ADD KEY `panier_article` (`panier_article`);
+ALTER TABLE `order`
+ ADD PRIMARY KEY (`id_order`), ADD KEY `login cmd` (`login`);
 
 --
 -- Index pour la table `posts`
@@ -407,10 +438,10 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 ALTER TABLE `livres`
 MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=33;
 --
--- AUTO_INCREMENT pour la table `panier`
+-- AUTO_INCREMENT pour la table `order`
 --
-ALTER TABLE `panier`
-MODIFY `idpanier` int(55) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+ALTER TABLE `order`
+MODIFY `id_order` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT pour la table `posts`
 --
@@ -432,12 +463,16 @@ ALTER TABLE `comments`
 ADD CONSTRAINT `comments_ibfk_1` FOREIGN KEY (`articleId`) REFERENCES `posts` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `panier`
+-- Contraintes pour la table `detail_order`
 --
-ALTER TABLE `panier`
-ADD CONSTRAINT `panier_ibfk_1` FOREIGN KEY (`panier_article`) REFERENCES `livres` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `panier_ibfk_2` FOREIGN KEY (`panier_article`) REFERENCES `informatique` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `panier_ibfk_3` FOREIGN KEY (`panier_article`) REFERENCES `hifi` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `detail_order`
+ADD CONSTRAINT `detail cmd` FOREIGN KEY (`order_id`) REFERENCES `order` (`id_order`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `order`
+--
+ALTER TABLE `order`
+ADD CONSTRAINT `login cmd` FOREIGN KEY (`login`) REFERENCES `utilisateur` (`login`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

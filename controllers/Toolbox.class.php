@@ -16,9 +16,9 @@ class Toolbox
     public static function sendMail($destinataire, $sujet, $message){
         $headers = "from: moussa76b@gmail.com";
         if(mail($destinataire,$sujet,$message,$headers)){
-            self::ajouterMessageAlerte("Mail envoyé", self::COULEUR_VERTE);
+            self::ajouterMessageAlerte("Un mail de validation vous a été envoyé !", self::COULEUR_VERTE);
         } else {
-            self::ajouterMessageAlerte("Mail non envoyé", self::COULEUR_ROUGE);
+            self::ajouterMessageAlerte("Le mail de validation n'a pas été envoyé", self::COULEUR_ROUGE);
         }
     }
 

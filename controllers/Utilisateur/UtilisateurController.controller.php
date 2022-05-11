@@ -47,10 +47,8 @@ class UtilisateurController extends MainController
             $passwordCrypte = password_hash($password, PASSWORD_DEFAULT);
             $clef = rand(0, 9999);
             if ($this->utilisateurManager->InscriptionBD($login, $passwordCrypte, $email, "utilisateur", "profil/homme.jpg", $clef, $nom, $prenom, $adresse, $code_postal, $date_de_naissance)) {
-
-                Toolbox::ajouterMessageAlerte("Le compte a a bien été crée, validez le mail envoyé pour le valider !", Toolbox::COULEUR_VERTE);
+                Toolbox::ajouterMessageAlerte("Le compte a bien été crée", Toolbox::COULEUR_VERTE);
                 $this->sendMailValidation($login, $email, $clef);
-                Toolbox::ajouterMessageAlerte("La compte a été créé, Un mail de validation vous a été envoyé !", Toolbox::COULEUR_VERTE);
                 header("Location: " . URL . "login");
             } else {
                 Toolbox::ajouterMessageAlerte("Une erreur est intervenue lors de la création du compte,veuillez recommencez l'inscription", Toolbox::COULEUR_ROUGE);

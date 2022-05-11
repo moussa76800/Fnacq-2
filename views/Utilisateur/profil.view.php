@@ -1,4 +1,11 @@
 <?php 
+    if (empty($_GET['page'])) {
+        $page = "accueil";
+    } else {
+        $url = explode("/", filter_var($_GET['page'], FILTER_SANITIZE_URL));
+        $page = $url[0];
+    }
+
     $total=nb_vues($utilisateur['login']);
     $total7=nb_vues_sept($utilisateur['login']);
 ?>
@@ -50,35 +57,73 @@
         <p>Vous êtes inscrit depuis le <?php echo $utilisateur['date_creation'] ?></p>
     </div>
 </div>
-<div class="container col-sm-6">
-    <section class="text-center">
-        <h1>COMMANDES</h1>
-    </section>
-    
-    <table class="table table-striped">
-    <thead>
-        <tr>
-        <th scope="col">N° commande</th>
-        <th scope="col">Date</th>
-        <th scope="col">Total</th>
-        <th scope="col">Détail</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php if (isset($order)) {	
-            $i=1;
-				foreach ($order as $key => $value) { ?>
+<div class="container">
+    <div class="row">
+        <div class="col-4">
+            <section class="text-center">
+            <h1>COMMANDES</h1>
+            </section>
+            
+            <table class="table table-striped">
+            <thead>
+                <tr>
+                <th scope="col">N° commande</th>
+                <th scope="col">Date</th>
+                <th scope="col">Total</th>
+                <th scope="col">Détail</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php if (isset($order)) {	
+                    $i=1;
+                        foreach ($order as $key => $value) { ?>
+                            <tr>
+                                <th scope="row"><?php echo $i; ?></th>
+                                <td><?= $value['date_order']; ?></td>
+                                <td><?= $value['total_prix']; ?></td>
+                                <td><a href="<?= URL ?>compte/profil/<?php echo $value['id_order']; ?>">détails</td>
+                            </tr>
+                        <?php $i++;
+                        }
+                    } ?>
+            </tbody>
+            </table>
+        </div>
+        <?php 
+        if (isset($url[2])) {?>
+            <div class="col-6">
+            <section class="text-center">
+                <h1>Détails</h1>
+                </section>
+                
+                <table class="table table-striped">
+                <thead>
                     <tr>
-                        <th scope="row"><?php echo $i; ?></th>
-                        <td><?= $value['date_order']; ?></td>
-                        <td><?= $value['total_prix']; ?></td>
-                        <td><a href="<?= URL ?>compte/profil/<?php echo $value['id_order']; ?>">détails</td>
+                    <th scope="col">Picture</th>
+                    <th scope="col">Titre de l'article</th>
+                    <th scope="col">Quantité</th>
+                    <th scope="col">Prix €</th>
                     </tr>
-				<?php $i++;
-                 }
-			} ?>
-    </tbody>
-    </table>
+                </thead>
+                <tbody>
+                    <?php if (isset($details)) {
+                            foreach ($details as $key => $value) { ?>
+                                <tr>
+                                    <th><img src="public/Assets/images/<?= $value['Valeur_Image']; ?>" width="60px;"></th>
+                                    <td><?= $value['Valeur_Title']; ?></td>
+                                    <td><?= $value['Valeur_Quantity']; ?></td>
+                                    <td><?= $value['Valeur_Price']; ?></td>
+                                </tr>
+                            <?php 
+                            }
+                        } ?>
+                </tbody>
+                </table>
+            </div>
+        <?php } ?>
+
+    </div>
+    
 
 </div>
 

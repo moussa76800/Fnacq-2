@@ -198,4 +198,68 @@ class UtilisateurManager extends MainManager
         $stmt->closeCursor();
         return $resultat;
     }
+
+    public function getDetailOrder($detail){
+        $alldetails= array();
+        $req = "SELECT * FROM `detail_order` WHERE `order_id`= :detail";
+        $stmt = $this->getBdd()->prepare($req);
+        $stmt->bindValue(":detail", $detail, PDO::PARAM_INT);
+        $stmt->execute();
+        $resultatAll = $stmt->fetchALL(PDO::FETCH_ASSOC);
+        $stmt->closeCursor();
+
+        foreach ($resultatAll as $key => $value) {
+            if ($value['category'] === 'livre') {
+                $req = "SELECT * FROM `livres` WHERE `id`=:id ";
+                $stmt = $this->getBdd()->prepare($req);
+                $stmt->bindValue(":id", $value['id_article'], PDO::PARAM_INT);
+                $stmt->execute();
+                $resultat = $stmt->fetch(PDO::FETCH_ASSOC);
+                $stmt->closeCursor();
+                
+                $article = array(
+                    'Valeur_Title' => $resultat['title'],
+                    'Valeur_Image' => "livres/{$resultat['image']}",     
+                    'Valeur_Price' => $resultat['price'],              
+                    'Valeur_Quantity' => $value['quantity_article'],
+                );
+                $alldetails[] = $article;
+
+
+            } elseif ($value['category'] === 'hifi') {
+                $req = "SELECT * FROM `hifi` WHERE `id`=:id ";
+                $stmt = $this->getBdd()->prepare($req);
+                $stmt->bindValue(":id", $value['id_article'], PDO::PARAM_INT);
+                $stmt->execute();
+                $resultat = $stmt->fetch(PDO::FETCH_ASSOC);
+                $stmt->closeCursor();
+
+                $article = array(
+                    'Valeur_Title' => $resultat['article'],
+                    'Valeur_Image' => "materielsHifi/{$resultat['image']}",     
+                    'Valeur_Price' => $resultat['price'],              
+                    'Valeur_Quantity' => $value['quantity_article'],
+                );
+                $alldetails[] = $article;
+
+            } elseif ($value['category'] === 'informatique') {
+                $req = "SELECT * FROM `informatique` WHERE `id`=:id ";
+                $stmt = $this->getBdd()->prepare($req);
+                $stmt->bindValue(":id", $value['id_article'], PDO::PARAM_INT);
+                $stmt->execute();
+                $resultat = $stmt->fetch(PDO::FETCH_ASSOC);
+                $stmt->closeCursor();
+
+                $article = array(
+                    'Valeur_Title' => $resultat['article'],
+                    'Valeur_Image' => "materielsInformatiques/{$resultat['image']}",     
+                    'Valeur_Price' => $resultat['price'],              
+                    'Valeur_Quantity' => $value['quantity_article'],
+                );
+                $alldetails[] = $article;
+            }
+            
+        }
+        return $alldetails;
+    }
 }

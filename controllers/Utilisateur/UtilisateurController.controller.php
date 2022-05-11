@@ -107,8 +107,11 @@ class UtilisateurController extends MainController
     }
 
     // AFFICHAGE DU PROFIL DE L'UTILISATEUR 
-    public function profil($login)
+    public function profil($login,$detail)
     {
+        if (isset($detail)) {
+            $details = $this->utilisateurManager->getDetailOrder($detail);
+        }
         if (!isset($login)) {
             $datas = $this->utilisateurManager->getUserInformation($_SESSION['profil']['login']);
             $_SESSION['profil']['role'] = $datas['role'];
@@ -123,6 +126,7 @@ class UtilisateurController extends MainController
                 "page_title" => "Page du Profil",
                 "utilisateur" => $datas,
                 "order" => $order,
+                "details" => $details,
                 "page_javascript" => ["profil.js"],
                 "view" => "views/Utilisateur/profil.view.php",
                 "template" => "views/common.dashboard/templateDash.php"
@@ -133,6 +137,7 @@ class UtilisateurController extends MainController
                 "page_title" => "Page du Profil",
                 "utilisateur" => $datas,
                 "order" => $order,
+                "details" => $details,
                 "page_javascript" => ["profil.js"],
                 "view" => "views/Utilisateur/profil.view.php",
                 "template" => "views/common/template.php"

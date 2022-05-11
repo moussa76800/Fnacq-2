@@ -277,7 +277,7 @@ try {
             } else {
                 switch ($url[1]) {
                     case "profil":
-                        $utilisateurController->profil(null);
+                        $utilisateurController->profil(null,$url[2]);
                         break;
 
                     case "deconnection":

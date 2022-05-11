@@ -112,15 +112,17 @@ class UtilisateurController extends MainController
         if (!isset($login)) {
             $datas = $this->utilisateurManager->getUserInformation($_SESSION['profil']['login']);
             $_SESSION['profil']['role'] = $datas['role'];
+            $order = $this->utilisateurManager->getInfoOrder($_SESSION['profil']['login']);
         } else {
             $datas = $this->utilisateurManager->getUserInformation($login);
         }
-        
+
         if ($_SESSION['profil']['role'] == 'administrateur') {
             $data_page = [
                 "page_description" => "Page du Profil",
                 "page_title" => "Page du Profil",
                 "utilisateur" => $datas,
+                "order" => $order,
                 "page_javascript" => ["profil.js"],
                 "view" => "views/Utilisateur/profil.view.php",
                 "template" => "views/common.dashboard/templateDash.php"
@@ -130,6 +132,7 @@ class UtilisateurController extends MainController
                 "page_description" => "Page du Profil",
                 "page_title" => "Page du Profil",
                 "utilisateur" => $datas,
+                "order" => $order,
                 "page_javascript" => ["profil.js"],
                 "view" => "views/Utilisateur/profil.view.php",
                 "template" => "views/common/template.php"

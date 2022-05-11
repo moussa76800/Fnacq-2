@@ -1,7 +1,6 @@
 <?php 
     $total=nb_vues($utilisateur['login']);
     $total7=nb_vues_sept($utilisateur['login']);
-    
 ?>
 <div class="rounded border border-dark p-2 m-2 text-center ">
     <h1 class="rounded border border-dark p-2 m-2 text-center text-white bg-success">Profil : <?= $utilisateur['login'] ?></h1>
@@ -47,6 +46,40 @@
         <a href="<?= URL ?>compte/modificationPassword/<?= $utilisateur['login'] ?>" class="btn btn-warning">Changer le mot de passe</a>
         <a href="<?= URL ?>compte/validation_suppressionCompte/<?= $utilisateur['login'] ?>" class="btn btn-danger">Supprimer son compte</a>
     </div>
+    <div>
+        <p>Vous êtes inscrit depuis le <?php echo $utilisateur['date_creation'] ?></p>
+    </div>
+</div>
+<div class="container col-sm-6">
+    <section class="text-center">
+        <h1>COMMANDES</h1>
+    </section>
+    
+    <table class="table table-striped">
+    <thead>
+        <tr>
+        <th scope="col">N° commande</th>
+        <th scope="col">Date</th>
+        <th scope="col">Total</th>
+        <th scope="col">Détail</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php if (isset($order)) {	
+            $i=1;
+				foreach ($order as $key => $value) { ?>
+                    <tr>
+                        <th scope="row"><?php echo $i; ?></th>
+                        <td><?= $value['date_order']; ?></td>
+                        <td><?= $value['total_prix']; ?></td>
+                        <td><a href="<?= URL ?>compte/profil/<?php echo $value['id_order']; ?>">détails</td>
+                    </tr>
+				<?php $i++;
+                 }
+			} ?>
+    </tbody>
+    </table>
+
 </div>
 
 <?php if (Securite::estAdministrateur()) { ?>

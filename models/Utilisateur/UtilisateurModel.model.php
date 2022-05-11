@@ -69,7 +69,7 @@ class UtilisateurManager extends MainManager
     
     public function getUserInformation($login)
     {
-        $req = "SELECT * FROM utilisateur WHERE login=:login";
+        $req = "SELECT *, DATE_FORMAT(`date_creation`, '%d/%m/%Y') as `date_creation` FROM utilisateur WHERE login=:login";
         $stmt = $this->getBdd()->prepare($req);
         $stmt->bindValue(":login", $login, PDO::PARAM_STR);
         $stmt->execute();
@@ -187,5 +187,15 @@ class UtilisateurManager extends MainManager
         $estModifier = ($stmt->rowCount() > 0);
         $stmt->closeCursor();
         return $estModifier;
+    }
+
+    public function getInfoOrder($login){
+        $req = "SELECT `id_order`,DATE_FORMAT(`date_order`, '%d/%m/%Y') as `date_order`,`total_prix` FROM `order` WHERE `login` = :login ORDER BY `date_order` ASC";
+        $stmt = $this->getBdd()->prepare($req);
+        $stmt->bindValue(":login", $login, PDO::PARAM_STR);
+        $stmt->execute();
+        $resultat = $stmt->fetchALL(PDO::FETCH_ASSOC);
+        $stmt->closeCursor();
+        return $resultat;
     }
 }

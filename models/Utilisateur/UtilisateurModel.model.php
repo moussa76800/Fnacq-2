@@ -81,8 +81,8 @@ class UtilisateurManager extends MainManager
     public function InscriptionBD($login, $passwordCrypte, $email, $role, $image, $clef, $nom, $prenom, $adresse, $code_postal, $date_de_naissance)
     {
 
-        $req = "INSERT INTO utilisateur (login,password,email,role,image,est_valide,clef,nom,prenom,adresse,code_postal,date_de_naissance)
- VALUES (:login,:password,:email,:role,:image,0,:clef,:nom,:prenom,:adresse,:code_postal,:date_de_naissance)";
+        $req = "INSERT INTO utilisateur (login,password,email,role,image,est_valide,clef,nom,prenom,adresse,code_postal,date_de_naissance,date_creation)
+ VALUES (:login,:password,:email,:role,:image,0,:clef,:nom,:prenom,:adresse,:code_postal,:date_de_naissance, now())";
         $stmt = $this->getBdd()->prepare($req);
         $stmt->bindValue(":login", $login, PDO::PARAM_STR);
         $stmt->bindValue(":password", $passwordCrypte, PDO::PARAM_STR);

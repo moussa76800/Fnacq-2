@@ -153,7 +153,7 @@ try {
                     Toolbox::ajouterMessageAlerte("Veuillez vous s'authentifier ou vous inscrire  !!", Toolbox::COULEUR_ROUGE);
                     header('Location: ' . URL . "login");
                 } else {
-                    $panierController->achatPanier();
+                    $panierController->achatPanier($url[2]);
                     Toolbox::ajouterMessageAlerte("Merci pour vos achat à bientôt !!", Toolbox::COULEUR_VERTE);
                     header('Location: ' . URL . "panier");
                 }

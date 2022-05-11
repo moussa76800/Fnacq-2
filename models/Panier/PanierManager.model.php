@@ -111,7 +111,40 @@ class PanierManager extends  MainManager
         setcookie($this->UserPanier, $chaine, time() + 365 * 24 * 3600, '/');
     }
 
-    public function achatPanier(){
+    public function achatPanier($total){
+        if (isset($_COOKIE[$this->UserPanier])) {
+            $panier = json_decode($_COOKIE[$this->UserPanier], true);
+        } else {
+            $panier = array();
+        }
+
+        $req="INSERT INTO `order`(`date_order`, `login`, `total_prix`) VALUES (now(),:login,:total_prix)";
+        $stmt = $this->getBdd()->prepare($req);
+        $stmt->bindValue(":login", $this->UserPanier, PDO::PARAM_STR);
+        $stmt->bindValue(":total_prix", $total, PDO::PARAM_INT);
+        $stmt->execute();
+        $stmt->closeCursor();
+
+        $req = "SELECT * FROM utilisateur WHERE login=:login";
+        $stmt = $this->getBdd()->prepare($req);
+        $stmt->bindValue(":login", $login, PDO::PARAM_STR);
+        $stmt->execute();
+        $resultat = $stmt->fetch(PDO::FETCH_ASSOC);
+        $stmt->closeCursor();
+        return $resultat;
+
+        foreach ($panier as $key => $valeur) {
+            $req="INSERT INTO `detail_order`(`id_article`, `category`, `order_id`, `quantity_article`) VALUES (:id_article,:category, :order_id, :quantity_article)";
+            $stmt = $this->getBdd()->prepare($req);
+            $stmt->bindValue(":id_article", $panier[$key]['Valeur_Id'], PDO::PARAM_INT);
+            $stmt->bindValue(":category", $panier[$key]['Valeur_Category'], PDO::PARAM_STR);
+            $stmt->bindValue(":order_id", $total, PDO::PARAM_INT);
+            $stmt->bindValue(":quantity_article", $panier[$key]['Valeur_Quantity'], PDO::PARAM_INT);
+            $stmt->execute();
+            $stmt->closeCursor();
+        }
+             
+
         setcookie($this->UserPanier,"",time() - (365 * 24 * 3600), '/');
     }
     

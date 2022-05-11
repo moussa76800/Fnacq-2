@@ -39,7 +39,7 @@ public function afficherPanier(){
         $this->panierManager->delHifi($id);
     } */
     
-    public function achatPanier(){
-        $this->panierManager->achatPanier();
+    public function achatPanier($total){
+        $this->panierManager->achatPanier($total);
     }
 }

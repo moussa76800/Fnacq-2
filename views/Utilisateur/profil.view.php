@@ -57,6 +57,7 @@
         <p>Vous êtes inscrit depuis le <?php echo $utilisateur['date_creation'] ?></p>
     </div>
 </div>
+<?php if ($order!=null) { ?>
 <div class="container">
     <div class="row">
         <div class="col-4">
@@ -69,7 +70,7 @@
                 <tr>
                 <th scope="col">N° commande</th>
                 <th scope="col">Date</th>
-                <th scope="col">Total</th>
+                <th scope="col">Total €</th>
                 <th scope="col">Détail</th>
                 </tr>
             </thead>
@@ -89,8 +90,9 @@
             </tbody>
             </table>
         </div>
-        <?php 
-        if (isset($url[2])) {?>
+        <?php
+        $id_order=(isset($url[2]))? $url[2] : null;
+        if ($id_order!=null) {?>
             <div class="col-6">
             <section class="text-center">
                 <h1>Détails</h1>
@@ -106,18 +108,27 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php if (isset($details)) {
+                    <?php $total = 0; if (isset($details)) {
                             foreach ($details as $key => $value) { ?>
                                 <tr>
-                                    <th><img src="public/Assets/images/<?= $value['Valeur_Image']; ?>" width="60px;"></th>
+                                    <th><img src="<?= URL ?>public/Assets/images/<?= $value['Valeur_Image']; ?>" width="60px;"></th>
                                     <td><?= $value['Valeur_Title']; ?></td>
                                     <td><?= $value['Valeur_Quantity']; ?></td>
-                                    <td><?= $value['Valeur_Price']; ?></td>
+                                    <td><?= $value['Valeur_Quantity']*$value['Valeur_Price']; ?></td>
                                 </tr>
-                            <?php 
-                            }
-                        } ?>
+                                <?php 
+								if (isset($value)) {
+									$total = $total + ($value['Valeur_Quantity']*$value['Valeur_Price']);
+								}
+							}
+						} ?>
                 </tbody>
+                <tfoot> 
+                    <tr>
+                        <td colspan="3" class="text-right"><strong>Total</strong></td>
+                        <td><?php echo $total." €" ?></td>
+                    </tr>
+                </tfoot>
                 </table>
             </div>
         <?php } ?>
@@ -127,7 +138,7 @@
 
 </div>
 
-<?php if (Securite::estAdministrateur()) { ?>
+<?php } if (Securite::estAdministrateur()) { ?>
 <div class='row'>
     <div class='col-md-4'>
         <div class='card'>

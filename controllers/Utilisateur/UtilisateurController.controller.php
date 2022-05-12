@@ -111,6 +111,8 @@ class UtilisateurController extends MainController
     {
         if (isset($detail)) {
             $details = $this->utilisateurManager->getDetailOrder($detail);
+        }else {
+            $details = null;
         }
         if (!isset($login)) {
             $datas = $this->utilisateurManager->getUserInformation($_SESSION['profil']['login']);

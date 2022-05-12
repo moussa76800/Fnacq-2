@@ -277,7 +277,8 @@ try {
             } else {
                 switch ($url[1]) {
                     case "profil":
-                        $utilisateurController->profil(null,$url[2]);
+                        $id_order=(isset($url[2]))? $url[2] : null;
+                        $utilisateurController->profil(null, $id_order);
                         break;
 
                     case "deconnection":

@@ -120,6 +120,7 @@ class UtilisateurController extends MainController
             $order = $this->utilisateurManager->getInfoOrder($_SESSION['profil']['login']);
         } else {
             $datas = $this->utilisateurManager->getUserInformation($login);
+            $order = $this->utilisateurManager->getInfoOrder($_SESSION['profil']['login']);
         }
 
         if ($_SESSION['profil']['role'] == 'administrateur') {

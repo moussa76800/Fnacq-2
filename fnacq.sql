@@ -1,4 +1,4 @@
--- phpMyAdmin SQL Dump
+Monir-- phpMyAdmin SQL Dump
 -- version 4.2.7.1
 -- http://www.phpmyadmin.net
 --
@@ -40,14 +40,14 @@ CREATE TABLE IF NOT EXISTS `comments` (
 
 INSERT INTO `comments` (`id`, `articleId`, `author`, `comment`, `created_at`) VALUES
 (20, 1, 'moussa', 'bingo', '2022-01-11 21:02:24'),
-(21, 2, 'Michel', 'Je trouve que ce langage est le meilleur pour d&eacute;velopper .', '2022-01-11 22:19:57'),
+(21, 2, 'Monir', 'Je trouve que ce langage est le meilleur pour d&eacute;velopper .', '2022-01-11 22:19:57'),
 (22, 11, 'moussa', 'Le covid, quelle mis&egrave;re !!', '2022-01-11 22:35:13'),
 (23, 10, 'moussa', 'bravooo!!', '2022-01-11 22:46:06'),
 (24, 10, 'Marc', '&agrave; m&eacute;diter !!', '2022-01-11 22:46:46'),
-(25, 10, 'Michel', 'Cette article est tr&egrave;s instructif !!', '2022-01-12 18:42:29'),
+(25, 10, 'Monir', 'Cette article est tr&egrave;s instructif !!', '2022-01-12 18:42:29'),
 (26, 11, 'Marc', 'Apr&egrave;s le Covid Macron,voici le Covid Omnicron !\r\nQuelle merde !!!', '2022-01-12 19:50:54'),
-(27, 10, 'Michel', 'a quand,le prochain article ?', '2022-01-13 21:53:30'),
-(28, 11, 'Michel', 'superbe post .', '2022-01-13 22:39:01'),
+(27, 10, 'Monir', 'a quand,le prochain article ?', '2022-01-13 21:53:30'),
+(28, 11, 'Monir', 'superbe post .', '2022-01-13 22:39:01'),
 (29, 1, 'Marc', 'Java est le langage de l''an 2000..', '2022-01-13 22:40:00'),
 (30, 3, 'Marc', 'Le langage C est un langage de programmation qui est toujours d''actualit&eacute;.', '2022-01-15 09:47:34'),
 (31, 3, 'moussa', 'Je rejoins ce qu''&agrave; mentionner Marc &agrave; propos de ce langage de programmation.', '2022-01-15 09:49:31'),
@@ -205,7 +205,7 @@ CREATE TABLE IF NOT EXISTS `posts` (
 --
 
 INSERT INTO `posts` (`id`, `author`, `title`, `content`, `image`, `created_at`) VALUES
-(1, 'Martin', 'Apprendre le language PHP', '\r\nLorem ipsum dolor sit amet consectetur adipisicing elit. Atque itaque totam ex sed ratione sit exercitationem, doloribus sequi ullam distinctio voluptatem id tenetur, voluptatibus in cum officia impedit veniam nesciunt!\r\nNam, rerum sed minus, consequuntur ducimus asperiores ipsa consequatur vitae similique sequi nostrum iusto quaerat cumque. Ratione minus dignissimos deleniti laboriosam, aliquam ullam et, id tenetur, ab iste quidem. Laboriosam?\r\nAliquid ullam vitae ratione reiciendis sunt? Ab aperiam, repudiandae quasi officia sit eligendi cupiditate perferendis? Ipsam accusamus numquam, exercitationem deserunt reiciendis nobis optio explicabo incidunt harum \r\n\r\n', 'php.png', '2021-12-28 00:00:00'),
+(1, 'Monir', 'Apprendre le language PHP', '\r\nLorem ipsum dolor sit amet consectetur adipisicing elit. Atque itaque totam ex sed ratione sit exercitationem, doloribus sequi ullam distinctio voluptatem id tenetur, voluptatibus in cum officia impedit veniam nesciunt!\r\nNam, rerum sed minus, consequuntur ducimus asperiores ipsa consequatur vitae similique sequi nostrum iusto quaerat cumque. Ratione minus dignissimos deleniti laboriosam, aliquam ullam et, id tenetur, ab iste quidem. Laboriosam?\r\nAliquid ullam vitae ratione reiciendis sunt? Ab aperiam, repudiandae quasi officia sit eligendi cupiditate perferendis? Ipsam accusamus numquam, exercitationem deserunt reiciendis nobis optio explicabo incidunt harum \r\n\r\n', 'php.png', '2021-12-28 00:00:00'),
 (2, 'Loana', 'Apprendre le language Java', '\r\nLorem ipsum dolor sit amet consectetur adipisicing elit. Atque itaque totam ex sed ratione sit exercitationem, doloribus sequi ullam distinctio voluptatem id tenetur, voluptatibus in cum officia impedit veniam nesciunt!\r\nNam, rerum sed minus, consequuntur ducimus asperiores ipsa consequatur vitae similique sequi nostrum iusto quaerat cumque. Ratione minus dignissimos deleniti laboriosam, aliquam ullam et, id tenetur, ab iste quidem. Laboriosam?\r\n', 'java.png', '2021-12-28 00:00:00'),
 (3, 'Bertrand', 'Apprendre le language C', '\r\nLorem ipsum dolor sit amet consectetur adipisicing elit. Atque itaque totam ex sed ratione sit exercitationem, doloribus sequi ullam distinctio voluptatem id tenetur, voluptatibus in cum officia impedit veniam nesciunt!\r\nNam, rerum sed minus, consequuntur ducimus asperiores ipsa consequatur vitae similique sequi nostrum iusto quaerat cumque. Ratione minus dignissimos deleniti laboriosam, aliquam ullam et, id tenetur, ab iste quidem. Laboriosam?\r\nAliquid ullam vitae ratione reiciendis sunt? Ab aperiam, repudiandae quasi ', 'c.jpg', '2021-12-28 00:00:00'),
 (10, 'Moussa', 'Comment poster un article dans le blog ?', 'Écrire un article de blog, ce n’est pas « écrire du texte » et « le mettre en ligne ». Pour avoir une chance que votre article soit lu, il vous faut respecter les codes de la publication web. Pour cela, mieux vaut avoir une méthode aboutie pour éviter d’oublier les points essentiels.  Voici comment je procède et comment vous pouvez faire vous-aussi, je vous indique au passage les outils qui me facilitent la tâche.', '54281_blog.jpg', '2022-01-04 00:00:00'),
@@ -353,6 +353,7 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
 INSERT INTO `utilisateur` (`login`, `password`, `email`, `role`, `image`, `est_valide`, `clef`, `nom`, `prenom`, `adresse`, `code_postal`, `date_de_naissance`, `date_creation`) VALUES
 ('admin', '$2y$10$AMKvJKteLcSSWkycDA.VIu2XJGLOb.X3/8veiXL/C/dmYp6MOE7CW', 'admin@gmail.com', 'administrateur', 'profil/homme.jpg', 1, 525, 'admin', 'admin', 'admin', 1111, '2023-05-16', '2021-11-01'),
 ('moussa', '$2y$10$E9RzHK1/TxXDUx/fCMFfa.kgj2URXyeHQewSWSCOslEv1Tm8Xu/Wi', 'moussa@gmail.com', 'utilisateur', 'profil/homme.jpg', 1, 1149, 'moussa', 'moussa', 'moussa', 1546, '2023-05-20', '2022-01-12'),
+('Monir'Monir, '$2y$10$E9RzHK1/TxXDUx/fCMFfa.kgj2URXyeHQewSWSCOslEv1Tm8Xu/Wi', 'Monir@Monirgmail.com', 'utilisateur', 'profil/homme.jpg', 1, 456, 'Monir', 'Monir', 'Monir', 2606, '2023-04-10', '2021-03-25'),
 ('youbrf', '$2y$10$Kevy.u0gaFxLgb94HJ1upuUf5M6j8PDFf1LnxVMrCTk4ou20lCFWG', 'youchawa@gmail.com', 'utilisateur', 'profil/youbrf/64447_windows-11-fond-ecran-wallpaper-2-scaled.jpg', 1, 7204, 'ch', 'you', 'famezjk', 4543, '2023-05-14', '2021-10-12');
 
 --

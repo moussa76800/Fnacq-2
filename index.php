@@ -1,4 +1,7 @@
 <?php
+// Moussa Boulhout
+// Monir Boutiebi
+// Youssef Chennou
 session_start();
 
 define("URL", str_replace("index.php", "", (isset($_SERVER['HTTPS']) ? "https" : "http") .

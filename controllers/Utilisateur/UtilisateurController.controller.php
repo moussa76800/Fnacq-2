@@ -48,7 +48,7 @@ class UtilisateurController extends MainController
             $clef = rand(0, 9999);
             if ($this->utilisateurManager->InscriptionBD($login, $passwordCrypte, $email, "utilisateur", "profil/homme.jpg", $clef, $nom, $prenom, $adresse, $code_postal, $date_de_naissance)) {
                 Toolbox::ajouterMessageAlerte("Le compte a bien été crée", Toolbox::COULEUR_VERTE);
-                $this->sendMailValidation($login, $email, $clef);
+               // $this->sendMailValidation($login, $email, $clef);
                 header("Location: " . URL . "login");
             } else {
                 Toolbox::ajouterMessageAlerte("Une erreur est intervenue lors de la création du compte,veuillez recommencez l'inscription", Toolbox::COULEUR_ROUGE);
@@ -60,7 +60,7 @@ class UtilisateurController extends MainController
         }
     }
 
-    // ENVOIE DU MAIL DE VALIDATION 
+    /* // ENVOIE DU MAIL DE VALIDATION 
     private function sendMailValidation($login, $mail, $clef)
     {
         $urlVerification = URL . "validationMail/" . $login . "/" . $clef;
@@ -104,7 +104,7 @@ class UtilisateurController extends MainController
         } else {
             header("Location: " . URL . "compte/profil");
         }
-    }
+    } */
 
     // AFFICHAGE DU PROFIL DE L'UTILISATEUR 
     public function profil($login,$detail)

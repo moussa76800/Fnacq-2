@@ -82,7 +82,7 @@ class UtilisateurManager extends MainManager
     {
 
         $req = "INSERT INTO utilisateur (login,password,email,role,image,est_valide,clef,nom,prenom,adresse,code_postal,date_de_naissance,date_creation)
- VALUES (:login,:password,:email,:role,:image,0,:clef,:nom,:prenom,:adresse,:code_postal,:date_de_naissance, now())";
+ VALUES (:login,:password,:email,:role,:image,1,:clef,:nom,:prenom,:adresse,:code_postal,:date_de_naissance, now())";
         $stmt = $this->getBdd()->prepare($req);
         $stmt->bindValue(":login", $login, PDO::PARAM_STR);
         $stmt->bindValue(":password", $passwordCrypte, PDO::PARAM_STR);
@@ -156,7 +156,7 @@ class UtilisateurManager extends MainManager
     }
 
 
-    public function bdValidationMailCompte($login,$clef){
+    /* public function bdValidationMailCompte($login,$clef){
         $req = "UPDATE utilisateur set est_valide = 1 WHERE login = :login and clef = :clef";
         $stmt = $this->getBdd()->prepare($req);
         $stmt->bindValue(":login",$login,PDO::PARAM_STR);
@@ -176,7 +176,7 @@ class UtilisateurManager extends MainManager
         $estModifier = ($stmt->rowCount() > 0);
         $stmt->closeCursor();
         return $estModifier;
-    }
+    } */
 
     public function validation_suppressionCompteDB($login)
     {

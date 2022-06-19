@@ -83,7 +83,7 @@
                                 <td><?= $value['date_order']; ?></td>
                                 <td><?= $value['total_prix']; ?></td>
                                 <?php if (Securite::estAdministrateur()) { ?>
-                                    <td><a href="<?= URL ?>administration/showProfilUser/<?php echo $value['id_order']; ?>">détails</td>
+                                    <td><a href="<?= URL ?>administration/showProfilUser/<?= $utilisateur['login'] ?>/<?php echo $value['id_order']; ?>">détails</td>
                                 <?php } else { ?>
                                     <td><a href="<?= URL ?>compte/profil/<?php echo $value['id_order']; ?>">détails</td>
                                 <?php } ?>

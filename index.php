@@ -355,8 +355,8 @@ try {
                         $administrateurController->validation_modificationRole($_POST['login'], $_POST['role']);
                         break;
                     case "showProfilUser":
-                        $id_order=(isset($url[2]))? $url[2] : null;
-                        $utilisateurController->profil($url[2],null);
+                        $id_order=(isset($url[3]))? $url[3] : null;
+                        $utilisateurController->profil($url[2],$id_order);
                         /* $administrateurController->showProfilUser($url[2]);
                         header("Location: " . URL . "showProfilUser.view.php"); */
                         break;

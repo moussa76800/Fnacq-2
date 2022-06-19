@@ -33,6 +33,7 @@
         </tr>
         <?php endfor; ?>
  </table>
- <a href="<?= URL ?>materielsInformatiques/add" class="btn btn-success d-block">Add computing's article</a>
-
+    <?php if (Securite::estAdministrateur()) { ?>
+        <a href="<?= URL ?>materielsInformatiques/add" class="btn btn-success d-block">Add computing's article</a>
+    <?php } ?>
  

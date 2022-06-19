@@ -35,5 +35,8 @@
             <?php   } ?>
         </tr>
     <?php endfor; ?>
+    
 </table>
-<a href="<?= URL ?>livres/add" class="btn btn-success d-block">Add book</a>
+    <?php if (Securite::estAdministrateur()) { ?>
+        <a href="<?= URL ?>livres/add" class="btn btn-success d-block">Add book</a>
+    <?php } ?>

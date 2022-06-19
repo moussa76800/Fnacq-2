@@ -32,6 +32,9 @@
         </tr>
         <?php endfor; ?>
  </table>
- <a href="<?= URL ?>materielsHifi/add" class="btn btn-success d-block">Add hifi's article</a>
+    <?php if (Securite::estAdministrateur()) { ?>
+        <a href="<?= URL ?>materielsHifi/add" class="btn btn-success d-block">Add hifi's article</a>
+    <?php } ?>
+ 
 
  

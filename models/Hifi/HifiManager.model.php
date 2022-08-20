@@ -47,7 +47,7 @@ class HifiManager extends MainManager{
         public function getHifiById($id)
         {
             for ($i = 0; $i < count($this->hifis); $i++) {
-                if ($this->hifis[$i]->getId() === $id) {
+                if ($this->hifis[$i]->getId() === intval($id)) {
                     return $this->hifis[$i];
                 }
             }

@@ -38,7 +38,7 @@ class BlogManager extends MainManager
     public function getPostById($id)
     {
         for ($i = 0; $i < count($this->posts); $i++) {
-            if ($this->posts[$i]->getId() === $id) {
+            if ($this->posts[$i]->getId() === intval($id)) {
                 return $this->posts[$i];
             }
         }

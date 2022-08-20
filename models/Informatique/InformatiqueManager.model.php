@@ -41,7 +41,7 @@ class InformatiqueManager extends MainManager{
     public function getInfoById($id)
     {
         for ($i = 0; $i < count($this->infos); $i++) {
-            if ($this->infos[$i]->getId() === $id) {
+            if ($this->infos[$i]->getId() === intval($id)) {
                 return $this->infos[$i];
             }
         }

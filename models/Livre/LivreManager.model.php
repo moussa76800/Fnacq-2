@@ -40,7 +40,7 @@ class LivreManager extends MainManager
     public function getLivreById($id)
     {
         for ($i = 0; $i < count($this->livres); $i++) {
-            if ($this->livres[$i]->getId() === $id) {
+            if ($this->livres[$i]->getId() === intval($id)) {
                 return $this->livres[$i];
             }
         }

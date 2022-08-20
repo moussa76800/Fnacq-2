@@ -33,7 +33,7 @@ class CommentManager extends MainManager
     {
         $comment = $this->comments;
         for ($i = 0; $i < count($comment); $i++) {
-            if ($comment[$i]->getArticleId() === $id) {
+            if ($comment[$i]->getArticleId() === intval($id)) {
                 $commentId[] = $comment[$i];
             }
         }
